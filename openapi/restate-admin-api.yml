@@ -1,0 +1,492 @@
+openapi: 3.1.0
+info:
+  title: Restate Admin API
+  description: >-
+    The Restate Admin API provides endpoints for managing deployments, services,
+    invocations, and the Restate server configuration. This API is used to
+    register service deployments, inspect service metadata, and manage
+    in-flight invocations.
+  version: 1.1.0
+  contact:
+    name: Restate
+    url: https://restate.dev/
+  license:
+    name: Business Source License 1.1
+    url: https://github.com/restatedev/restate/blob/main/LICENSE
+servers:
+  - url: '{baseUrl}'
+    description: Restate Admin Server
+    variables:
+      baseUrl:
+        default: http://localhost:9070
+paths:
+  /deployments:
+    get:
+      operationId: listDeployments
+      summary: List deployments
+      description: Returns a list of all registered service deployments.
+      tags:
+        - Deployments
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deployments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DeploymentResponse'
+    post:
+      operationId: createDeployment
+      summary: Register a deployment
+      description: Registers a new service deployment endpoint with Restate.
+      tags:
+        - Deployments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterDeploymentRequest'
+      responses:
+        '201':
+          description: Deployment registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+  /deployments/{deploymentId}:
+    get:
+      operationId: getDeployment
+      summary: Get a deployment
+      description: Returns details of a specific deployment including its services.
+      tags:
+        - Deployments
+      parameters:
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentResponse'
+    delete:
+      operationId: deleteDeployment
+      summary: Delete a deployment
+      description: Deregisters a deployment and removes its services.
+      tags:
+        - Deployments
+      parameters:
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: force
+          in: query
+          description: Force deletion even if there are active invocations.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '202':
+          description: Deployment deletion accepted
+        '409':
+          description: Deployment has active invocations
+  /services:
+    get:
+      operationId: listServices
+      summary: List services
+      description: Returns a list of all registered services.
+      tags:
+        - Services
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  services:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServiceMetadata'
+  /services/{serviceName}:
+    get:
+      operationId: getService
+      summary: Get a service
+      description: Returns metadata of a specific service including its handlers.
+      tags:
+        - Services
+      parameters:
+        - name: serviceName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceMetadata'
+    patch:
+      operationId: modifyService
+      summary: Modify a service
+      description: Updates the configuration of a service (e.g., public access).
+      tags:
+        - Services
+      parameters:
+        - name: serviceName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                public:
+                  type: boolean
+                idempotencyRetention:
+                  type: string
+                workflowCompletionRetention:
+                  type: string
+      responses:
+        '200':
+          description: Service updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceMetadata'
+  /services/{serviceName}/handlers:
+    get:
+      operationId: listServiceHandlers
+      summary: List service handlers
+      description: Returns a list of handlers for a specific service.
+      tags:
+        - Services
+      parameters:
+        - name: serviceName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  handlers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HandlerMetadata'
+  /services/{serviceName}/handlers/{handlerName}:
+    get:
+      operationId: getServiceHandler
+      summary: Get a service handler
+      description: Returns metadata of a specific handler.
+      tags:
+        - Services
+      parameters:
+        - name: serviceName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: handlerName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlerMetadata'
+  /invocations:
+    get:
+      operationId: listInvocations
+      summary: List invocations
+      description: Returns a list of active invocations.
+      tags:
+        - Invocations
+      parameters:
+        - name: service
+          in: query
+          schema:
+            type: string
+        - name: handler
+          in: query
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - pending
+              - ready
+              - running
+              - backing-off
+              - suspended
+              - completed
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invocations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Invocation'
+  /invocations/{invocationId}:
+    get:
+      operationId: getInvocation
+      summary: Get an invocation
+      description: Returns details of a specific invocation.
+      tags:
+        - Invocations
+      parameters:
+        - name: invocationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invocation'
+    delete:
+      operationId: cancelInvocation
+      summary: Cancel an invocation
+      description: Cancels an in-flight invocation and its children.
+      tags:
+        - Invocations
+      parameters:
+        - name: invocationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: mode
+          in: query
+          schema:
+            type: string
+            enum:
+              - cancel
+              - kill
+              - purge
+      responses:
+        '202':
+          description: Cancellation accepted
+  /invocations/{invocationId}/purge:
+    post:
+      operationId: purgeInvocation
+      summary: Purge an invocation
+      description: Purges a completed invocation and its associated state.
+      tags:
+        - Invocations
+      parameters:
+        - name: invocationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '202':
+          description: Purge accepted
+  /health:
+    get:
+      operationId: getHealth
+      summary: Health check
+      description: Returns the health status of the Restate server.
+      tags:
+        - System
+      responses:
+        '200':
+          description: Healthy
+  /version:
+    get:
+      operationId: getVersion
+      summary: Get server version
+      description: Returns the version information of the Restate server.
+      tags:
+        - System
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  minApiVersion:
+                    type: integer
+                  maxApiVersion:
+                    type: integer
+components:
+  schemas:
+    RegisterDeploymentRequest:
+      type: object
+      required:
+        - uri
+      properties:
+        uri:
+          type: string
+          description: URI of the deployment endpoint.
+        additional_headers:
+          type: object
+          additionalProperties:
+            type: string
+        use_http_11:
+          type: boolean
+          default: false
+        force:
+          type: boolean
+          default: false
+        dry_run:
+          type: boolean
+          default: false
+    DeploymentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        uri:
+          type: string
+        protocol_type:
+          type: string
+          enum:
+            - RequestResponse
+            - BidiStream
+        http_version:
+          type: string
+        additional_headers:
+          type: object
+        created_at:
+          type: string
+          format: date-time
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceMetadata'
+    ServiceMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+        handlers:
+          type: array
+          items:
+            $ref: '#/components/schemas/HandlerMetadata'
+        ty:
+          type: string
+          enum:
+            - Service
+            - VirtualObject
+            - Workflow
+        deployment_id:
+          type: string
+        revision:
+          type: integer
+        public:
+          type: boolean
+        idempotency_retention:
+          type: string
+        workflow_completion_retention:
+          type: string
+    HandlerMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+        ty:
+          type: string
+          enum:
+            - Exclusive
+            - Shared
+            - Workflow
+        input:
+          type: object
+          properties:
+            required:
+              type: boolean
+            contentType:
+              type: string
+            jsonSchema:
+              type: object
+        output:
+          type: object
+          properties:
+            contentType:
+              type: string
+            setContentTypeIfEmpty:
+              type: boolean
+            jsonSchema:
+              type: object
+    Invocation:
+      type: object
+      properties:
+        id:
+          type: string
+        target:
+          type: string
+        target_service_name:
+          type: string
+        target_handler_name:
+          type: string
+        target_service_key:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - ready
+            - running
+            - backing-off
+            - suspended
+            - completed
+        created_at:
+          type: string
+          format: date-time
+        modified_at:
+          type: string
+          format: date-time
+        trace_id:
+          type: string
+        deployment_id:
+          type: string
+        retry_count:
+          type: integer
+        last_failure:
+          type: string
+        next_retry_at:
+          type: string
+          format: date-time

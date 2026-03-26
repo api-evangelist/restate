@@ -19,7 +19,9 @@ apis:
     humanURL: https://restate.dev/
     tags:
       - Microservices
-    properties: []
+    properties:
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/openapi/restate-admin-api.yml
 common:
   - type: Website
     url: https://restate.dev/
