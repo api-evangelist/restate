@@ -1,0 +1,28 @@
+aid: restate
+name: Restate
+description: >-
+  Restate is a low-latency durable execution engine for workflows, event-driven handlers, and stateful orchestration of microservices.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Microservices
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/apis.yml
+created: '2026-03-26'
+modified: '2026-03-26'
+specificationVersion: '0.19'
+apis:
+  - aid: restate:restate
+    name: Restate
+    description: >-
+      Restate is a low-latency durable execution engine for workflows, event-driven handlers, and stateful orchestration of microservices.
+    humanURL: https://restate.dev/
+    tags:
+      - Microservices
+    properties: []
+common:
+  - type: Website
+    url: https://restate.dev/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
