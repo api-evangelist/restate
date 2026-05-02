@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:9070/invocations?service=OrderService&status=running",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "invocations": [
+        {
+          "id": "inv_01HXYZ789GHI",
+          "target": "OrderService/placeOrder",
+          "target_service_name": "OrderService",
+          "target_handler_name": "placeOrder",
+          "target_service_key": null,
+          "status": "running",
+          "created_at": "2026-05-02T10:00:00Z",
+          "modified_at": "2026-05-02T10:00:05Z",
+          "trace_id": "trace_abc123",
+          "deployment_id": "dp_01HXYZ123ABC",
+          "retry_count": 0,
+          "last_failure": null,
+          "next_retry_at": null
+        }
+      ]
+    }
+  }
+}

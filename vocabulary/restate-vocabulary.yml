@@ -1,0 +1,129 @@
+vocabulary:
+  name: Restate Vocabulary
+  description: Domain vocabulary for the Restate durable execution engine
+  version: 1.4.0
+  created: '2026-05-02'
+  modified: '2026-05-02'
+  tags:
+    - Durable Execution
+    - Workflows
+    - Distributed Systems
+
+terms:
+  - term: Durable Execution
+    definition: The ability to make code execution reliable and fault-tolerant by recording every step in a journal. If a function crashes or fails, Restate replays the journal to resume exactly where it left off.
+    category: Core Concept
+    relatedTerms:
+      - Journal
+      - Replay
+      - Exactly-Once Semantics
+
+  - term: Journal
+    definition: The persistent log maintained by Restate that records every step of a handler's execution, including service calls, state updates, timers, and their results.
+    category: Core Concept
+    relatedTerms:
+      - Durable Execution
+      - Replay
+
+  - term: Replay
+    definition: The process by which Restate recovers a failed handler by replaying its journal, skipping completed steps and resuming from the last recorded checkpoint.
+    category: Core Concept
+    relatedTerms:
+      - Journal
+      - Durable Execution
+
+  - term: Exactly-Once Semantics
+    definition: The guarantee that each side-effecting operation (external API call, database write, timer) is executed exactly once, even in the face of failures and retries.
+    category: Guarantee
+    relatedTerms:
+      - Durable Execution
+      - Idempotency
+
+  - term: Deployment
+    definition: A registered service endpoint URI that Restate routes invocations to. A deployment hosts one or more services and their handlers.
+    category: Infrastructure
+    relatedTerms:
+      - Service
+      - Handler
+
+  - term: Service
+    definition: A Restate service groups related durable handlers. Services can be of type Service (stateless), VirtualObject (stateful per key), or Workflow.
+    category: Core Concept
+    relatedTerms:
+      - Handler
+      - VirtualObject
+      - Workflow
+
+  - term: Handler
+    definition: A durable function within a Restate service that processes invocations. Handler types include Exclusive (serialized per key), Shared (concurrent), and Workflow (exactly-once lifecycle).
+    category: Core Concept
+    relatedTerms:
+      - Service
+      - Invocation
+
+  - term: VirtualObject
+    definition: A Restate service type where each key represents a stateful entity. Exclusive handlers for the same key are serialized to prevent concurrent modification.
+    category: Service Type
+    relatedTerms:
+      - Service
+      - Handler
+
+  - term: Invocation
+    definition: A single call to a Restate service handler. Invocations are durably tracked and can be monitored, cancelled, killed, or purged via the Admin API.
+    category: Execution
+    relatedTerms:
+      - Handler
+      - InvocationId
+
+  - term: InvocationId
+    definition: A unique identifier for a specific Restate invocation instance, used to track and manage execution lifecycle.
+    category: Identifier
+    relatedTerms:
+      - Invocation
+
+  - term: Subscription
+    definition: A Restate Kafka subscription that connects a Kafka topic (source) to a service handler (sink), enabling event-driven invocations with exactly-once processing.
+    category: Integration
+    relatedTerms:
+      - Kafka
+
+  - term: Kafka
+    definition: Apache Kafka message broker integration that enables Restate services to be invoked by Kafka events via subscriptions.
+    category: Integration
+    relatedTerms:
+      - Subscription
+
+  - term: Idempotency
+    definition: The property of an operation that can be safely retried without changing the result beyond the initial execution. Restate ensures idempotent execution via the journal.
+    category: Property
+    relatedTerms:
+      - Exactly-Once Semantics
+
+  - term: Purge
+    definition: The Admin API operation to remove a completed invocation's state and journal from Restate storage.
+    category: Operation
+    relatedTerms:
+      - Invocation
+
+  - term: Bifrost
+    definition: Restate's internal durable append-only log (write-ahead log) used for partition replication and fault tolerance.
+    category: Internal Architecture
+
+  - term: CRD
+    definition: Kubernetes Custom Resource Definition used by the Restate Operator to manage RestateCluster, RestateDeployment, and RestateCloudEnvironment resources.
+    category: Kubernetes
+    relatedTerms:
+      - RestateCluster
+      - RestateDeployment
+
+  - term: RestateCluster
+    definition: A Kubernetes CRD that describes the configuration and desired state of a Restate cluster deployed via the Restate Operator.
+    category: Kubernetes CRD
+    relatedTerms:
+      - CRD
+
+  - term: RestateDeployment
+    definition: A Kubernetes CRD representing a Restate service deployment managed by the Restate Operator.
+    category: Kubernetes CRD
+    relatedTerms:
+      - CRD

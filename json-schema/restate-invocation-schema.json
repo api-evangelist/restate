@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json",
+  "title": "Invocation",
+  "description": "Represents a Restate durable invocation — an in-flight or completed call to a service handler with exactly-once execution semantics.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the invocation."
+    },
+    "target": {
+      "type": "string",
+      "description": "The fully qualified target in format ServiceName/handlerName or ServiceName/key/handlerName."
+    },
+    "target_service_name": {
+      "type": "string",
+      "description": "The name of the target service."
+    },
+    "target_handler_name": {
+      "type": "string",
+      "description": "The name of the target handler."
+    },
+    "target_service_key": {
+      "type": ["string", "null"],
+      "description": "The virtual object key (null for plain services)."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current execution status of the invocation.",
+      "enum": ["pending", "ready", "running", "backing-off", "suspended", "completed"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the invocation was created."
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the invocation status last changed."
+    },
+    "trace_id": {
+      "type": "string",
+      "description": "Distributed trace identifier for observability."
+    },
+    "deployment_id": {
+      "type": "string",
+      "description": "The deployment that is handling this invocation."
+    },
+    "retry_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of times this invocation has been retried."
+    },
+    "last_failure": {
+      "type": ["string", "null"],
+      "description": "Description of the last failure that caused a retry."
+    },
+    "next_retry_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO 8601 timestamp for when the next retry will occur."
+    }
+  },
+  "required": ["id", "target", "status"]
+}

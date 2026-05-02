@@ -1,0 +1,85 @@
+{
+  "name": "Invocation",
+  "description": "Structure documentation for a Restate durable invocation with exactly-once execution semantics",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "description": "Unique invocation identifier"
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "required": true,
+      "description": "Fully qualified target in ServiceName/handlerName format"
+    },
+    {
+      "name": "target_service_name",
+      "type": "string",
+      "required": false,
+      "description": "Name of the target service"
+    },
+    {
+      "name": "target_handler_name",
+      "type": "string",
+      "required": false,
+      "description": "Name of the target handler"
+    },
+    {
+      "name": "target_service_key",
+      "type": "string|null",
+      "required": false,
+      "description": "Virtual object key (null for plain services)"
+    },
+    {
+      "name": "status",
+      "type": "enum",
+      "required": true,
+      "description": "Invocation execution state",
+      "values": ["pending", "ready", "running", "backing-off", "suspended", "completed"]
+    },
+    {
+      "name": "created_at",
+      "type": "string (date-time)",
+      "required": false,
+      "description": "ISO 8601 creation timestamp"
+    },
+    {
+      "name": "modified_at",
+      "type": "string (date-time)",
+      "required": false,
+      "description": "ISO 8601 last modification timestamp"
+    },
+    {
+      "name": "trace_id",
+      "type": "string",
+      "required": false,
+      "description": "Distributed trace identifier"
+    },
+    {
+      "name": "deployment_id",
+      "type": "string",
+      "required": false,
+      "description": "Deployment handling the invocation"
+    },
+    {
+      "name": "retry_count",
+      "type": "integer",
+      "required": false,
+      "description": "Number of retries attempted"
+    },
+    {
+      "name": "last_failure",
+      "type": "string|null",
+      "required": false,
+      "description": "Last failure description"
+    },
+    {
+      "name": "next_retry_at",
+      "type": "string|null (date-time)",
+      "required": false,
+      "description": "Scheduled retry timestamp"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json",
+  "title": "Deployment",
+  "description": "Represents a Restate service deployment registration — a URI endpoint that hosts one or more durable services.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the deployment."
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URI of the service deployment endpoint."
+    },
+    "protocol_type": {
+      "type": "string",
+      "description": "The HTTP protocol type used for communication.",
+      "enum": ["RequestResponse", "BidiStream"]
+    },
+    "http_version": {
+      "type": "string",
+      "description": "The HTTP version used (e.g., HTTP_2, HTTP_11)."
+    },
+    "additional_headers": {
+      "type": "object",
+      "description": "Additional HTTP headers to include when calling the deployment.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the deployment was registered."
+    },
+    "services": {
+      "type": "array",
+      "description": "List of services hosted by this deployment.",
+      "items": {
+        "$ref": "#/$defs/ServiceMetadata"
+      }
+    }
+  },
+  "required": ["id", "uri"],
+  "$defs": {
+    "ServiceMetadata": {
+      "type": "object",
+      "description": "Metadata for a Restate service.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The service name."
+        },
+        "ty": {
+          "type": "string",
+          "description": "The service type.",
+          "enum": ["Service", "VirtualObject", "Workflow"]
+        },
+        "deployment_id": {
+          "type": "string",
+          "description": "The deployment that hosts this service."
+        },
+        "revision": {
+          "type": "integer",
+          "description": "The service revision number."
+        },
+        "public": {
+          "type": "boolean",
+          "description": "Whether the service is publicly accessible."
+        },
+        "idempotency_retention": {
+          "type": "string",
+          "description": "Duration for retaining idempotency keys."
+        },
+        "workflow_completion_retention": {
+          "type": "string",
+          "description": "Duration for retaining workflow completion state."
+        },
+        "handlers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/HandlerMetadata"
+          }
+        }
+      },
+      "required": ["name", "ty"]
+    },
+    "HandlerMetadata": {
+      "type": "object",
+      "description": "Metadata for a durable handler within a service.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The handler name."
+        },
+        "ty": {
+          "type": "string",
+          "description": "The handler type.",
+          "enum": ["Exclusive", "Shared", "Workflow"]
+        },
+        "input": {
+          "type": "object",
+          "description": "Input schema for the handler.",
+          "properties": {
+            "required": {"type": "boolean"},
+            "contentType": {"type": "string"},
+            "jsonSchema": {"type": "object"}
+          }
+        },
+        "output": {
+          "type": "object",
+          "description": "Output schema for the handler.",
+          "properties": {
+            "contentType": {"type": "string"},
+            "setContentTypeIfEmpty": {"type": "boolean"},
+            "jsonSchema": {"type": "object"}
+          }
+        }
+      },
+      "required": ["name", "ty"]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+extends: spectral:oas
+rules:
+  # Restate Admin API conventions
+  restate-operation-ids-snake-case:
+    description: Operation IDs must use snake_case (Restate convention)
+    message: "Operation ID '{{value}}' must use snake_case"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  restate-tags-defined:
+    description: All operations must have at least one tag
+    message: "Operation must have at least one tag"
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: defined
+
+  restate-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*(\\s[A-Z][a-zA-Z0-9]*)*$"
+
+  restate-error-responses-defined:
+    description: All operations must define error responses
+    message: "Operation must define error response codes (400, 404, or 500)"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete,patch]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            responses:
+              type: object
+              anyOf:
+                - required: ["400"]
+                - required: ["404"]
+                - required: ["500"]
+
+  restate-deployment-uri-required:
+    description: Create deployment must require URI field
+    message: "Deployment registration request must require 'uri' field"
+    severity: error
+    given: "$.paths['/deployments'].post.requestBody.content.application/json.schema"
+    then:
+      field: required
+      function: defined
+
+  restate-server-port-9070:
+    description: Restate Admin API default server should be on port 9070
+    message: "Admin API server URL should reference port 9070"
+    severity: info
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "(localhost:9070|\\{baseUrl\\})"
+
+  restate-invocation-status-enum:
+    description: Invocation status must use defined enum values
+    message: "Invocation status must be one of the defined enum values"
+    severity: error
+    given: "$.components.schemas.*.properties.status.enum"
+    then:
+      function: defined
+
+  restate-paths-no-trailing-slash:
+    description: Paths must not have trailing slashes
+    message: "Path '{{path}}' must not have a trailing slash"
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+
+  restate-response-schemas-defined:
+    description: Success responses should reference schemas
+    message: "200/201 response must define a schema"
+    severity: warn
+    given: "$.paths[*][*].responses[200,201].content.application/json"
+    then:
+      field: schema
+      function: defined
+
+  restate-info-version-semver:
+    description: API version should follow semver format
+    message: "API version '{{value}}' should follow semver (e.g., 1.4.0)"
+    severity: warn
+    given: "$.info.version"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^\\d+\\.\\d+\\.\\d+$"

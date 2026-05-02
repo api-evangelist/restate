@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:9070/deployments",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "deployments": [
+        {
+          "id": "dp_01HXYZ123ABC",
+          "uri": "http://localhost:9080",
+          "protocol_type": "RequestResponse",
+          "http_version": "HTTP_2",
+          "additional_headers": {},
+          "created_at": "2026-05-02T09:00:00Z",
+          "services": [
+            {
+              "name": "OrderService",
+              "ty": "Service",
+              "deployment_id": "dp_01HXYZ123ABC",
+              "revision": 1,
+              "public": true,
+              "handlers": [
+                {"name": "placeOrder", "ty": "Exclusive"},
+                {"name": "getOrderStatus", "ty": "Shared"}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

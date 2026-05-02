@@ -1,0 +1,43 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:9070/deployments",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "uri": "http://my-service:9080",
+      "additional_headers": {
+        "x-api-key": "my-service-api-key"
+      },
+      "use_http_11": false,
+      "force": false,
+      "dry_run": false
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "dp_01HNEWDEPLOY",
+      "uri": "http://my-service:9080",
+      "protocol_type": "RequestResponse",
+      "http_version": "HTTP_2",
+      "additional_headers": {
+        "x-api-key": "my-service-api-key"
+      },
+      "created_at": "2026-05-02T10:30:00Z",
+      "services": [
+        {
+          "name": "MyService",
+          "ty": "VirtualObject",
+          "deployment_id": "dp_01HNEWDEPLOY",
+          "revision": 1,
+          "public": true
+        }
+      ]
+    }
+  }
+}
