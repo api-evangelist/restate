@@ -46,7 +46,7 @@ apis:
         url: https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
       - type: Documentation
         url: https://docs.restate.dev/
-      - type: GitHub Repository
+      - type: GitHubRepository
         url: https://github.com/restatedev/restate
       - type: KubernetesCRD
         url: https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
@@ -59,7 +59,7 @@ common:
     url: https://restate.dev/
   - type: Documentation
     url: https://docs.restate.dev/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/restatedev
   - type: TypeScript SDK
     url: https://github.com/restatedev/sdk-typescript
