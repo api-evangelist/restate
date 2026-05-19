@@ -1,0 +1,242 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Admin API — service
+  description: 'Admin API — service. 5 operations. Lead operation: List Services. Self-contained Naftiko capability covering
+    one Restate business surface.'
+  tags:
+  - Restate
+  - service
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESTATE_API_KEY: RESTATE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-service
+    baseUri: ''
+    description: Admin API — service business capability. Self-contained, no shared references.
+    resources:
+    - name: services
+      path: /services
+      operations:
+      - name: listservices
+        method: GET
+        description: List Services
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: services-service
+      path: /services/{service}
+      operations:
+      - name: getservice
+        method: GET
+        description: Get Service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: service
+          in: path
+          type: string
+          description: Fully qualified service name.
+          required: true
+      - name: modifyservice
+        method: PATCH
+        description: Modify A Service
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: service
+          in: path
+          type: string
+          description: Fully qualified service name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: services-service-openapi
+      path: /services/{service}/openapi
+      operations:
+      - name: getserviceopenapi
+        method: GET
+        description: Get Service OpenAPI
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: service
+          in: path
+          type: string
+          description: Fully qualified service name.
+          required: true
+    - name: services-service-state
+      path: /services/{service}/state
+      operations:
+      - name: modifyservicestate
+        method: POST
+        description: Modify A Service State
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: service
+          in: path
+          type: string
+          description: Fully qualified service name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: admin-service-rest
+    port: 8080
+    description: REST adapter for Admin API — service. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/services
+      name: services
+      description: REST surface for services.
+      operations:
+      - method: GET
+        name: listservices
+        description: List Services
+        call: admin-service.listservices
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/services/{service}
+      name: services-service
+      description: REST surface for services-service.
+      operations:
+      - method: GET
+        name: getservice
+        description: Get Service
+        call: admin-service.getservice
+        with:
+          service: rest.service
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: modifyservice
+        description: Modify A Service
+        call: admin-service.modifyservice
+        with:
+          service: rest.service
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/services/{service}/openapi
+      name: services-service-openapi
+      description: REST surface for services-service-openapi.
+      operations:
+      - method: GET
+        name: getserviceopenapi
+        description: Get Service OpenAPI
+        call: admin-service.getserviceopenapi
+        with:
+          service: rest.service
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/services/{service}/state
+      name: services-service-state
+      description: REST surface for services-service-state.
+      operations:
+      - method: POST
+        name: modifyservicestate
+        description: Modify A Service State
+        call: admin-service.modifyservicestate
+        with:
+          service: rest.service
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-service-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Admin API — service. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-services
+      description: List Services
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-service.listservices
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-service
+      description: Get Service
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-service.getservice
+      with:
+        service: tools.service
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-service
+      description: Modify A Service
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: admin-service.modifyservice
+      with:
+        service: tools.service
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-service-openapi
+      description: Get Service OpenAPI
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-service.getserviceopenapi
+      with:
+        service: tools.service
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-service-state
+      description: Modify A Service State
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-service.modifyservicestate
+      with:
+        service: tools.service
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Admin API — openapi
+  description: 'Admin API — openapi. 1 operations. Lead operation: OpenAPI Specification. Self-contained Naftiko capability
+    covering one Restate business surface.'
+  tags:
+  - Restate
+  - openapi
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESTATE_API_KEY: RESTATE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-openapi
+    baseUri: ''
+    description: Admin API — openapi business capability. Self-contained, no shared references.
+    resources:
+    - name: openapi
+      path: /openapi
+      operations:
+      - name: openapispec
+        method: GET
+        description: OpenAPI Specification
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: admin-openapi-rest
+    port: 8080
+    description: REST adapter for Admin API — openapi. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/openapi
+      name: openapi
+      description: REST surface for openapi.
+      operations:
+      - method: GET
+        name: openapispec
+        description: OpenAPI Specification
+        call: admin-openapi.openapispec
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-openapi-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Admin API — openapi. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: openapi-specification
+      description: OpenAPI Specification
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-openapi.openapispec
+      outputParameters:
+      - type: object
+        mapping: $.

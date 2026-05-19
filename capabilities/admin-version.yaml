@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Admin API — version
+  description: 'Admin API — version. 1 operations. Lead operation: Admin Version Information. Self-contained Naftiko capability
+    covering one Restate business surface.'
+  tags:
+  - Restate
+  - version
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESTATE_API_KEY: RESTATE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-version
+    baseUri: ''
+    description: Admin API — version business capability. Self-contained, no shared references.
+    resources:
+    - name: version
+      path: /version
+      operations:
+      - name: version
+        method: GET
+        description: Admin Version Information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: admin-version-rest
+    port: 8080
+    description: REST adapter for Admin API — version. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/version
+      name: version
+      description: REST surface for version.
+      operations:
+      - method: GET
+        name: version
+        description: Admin Version Information
+        call: admin-version.version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-version-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Admin API — version. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: admin-version-information
+      description: Admin Version Information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-version.version
+      outputParameters:
+      - type: object
+        mapping: $.

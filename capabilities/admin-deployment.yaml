@@ -1,0 +1,228 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Admin API — deployment
+  description: 'Admin API — deployment. 5 operations. Lead operation: List Deployments. Self-contained Naftiko capability
+    covering one Restate business surface.'
+  tags:
+  - Restate
+  - deployment
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RESTATE_API_KEY: RESTATE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-deployment
+    baseUri: ''
+    description: Admin API — deployment business capability. Self-contained, no shared references.
+    resources:
+    - name: deployments
+      path: /deployments
+      operations:
+      - name: listdeployments
+        method: GET
+        description: List Deployments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createdeployment
+        method: POST
+        description: Create Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: deployments-deployment
+      path: /deployments/{deployment}
+      operations:
+      - name: getdeployment
+        method: GET
+        description: Get Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deployment
+          in: path
+          type: string
+          description: Deployment identifier
+          required: true
+      - name: updatedeployment
+        method: PUT
+        description: Update Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deployment
+          in: path
+          type: string
+          description: Deployment identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletedeployment
+        method: DELETE
+        description: Delete Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deployment
+          in: path
+          type: string
+          description: Deployment identifier
+          required: true
+        - name: force
+          in: query
+          type: boolean
+          description: If true, the deployment will be forcefully deleted. This might break in-flight invocations, use with
+            caution.
+  exposes:
+  - type: rest
+    namespace: admin-deployment-rest
+    port: 8080
+    description: REST adapter for Admin API — deployment. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/deployments
+      name: deployments
+      description: REST surface for deployments.
+      operations:
+      - method: GET
+        name: listdeployments
+        description: List Deployments
+        call: admin-deployment.listdeployments
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdeployment
+        description: Create Deployment
+        call: admin-deployment.createdeployment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deployments/{deployment}
+      name: deployments-deployment
+      description: REST surface for deployments-deployment.
+      operations:
+      - method: GET
+        name: getdeployment
+        description: Get Deployment
+        call: admin-deployment.getdeployment
+        with:
+          deployment: rest.deployment
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedeployment
+        description: Update Deployment
+        call: admin-deployment.updatedeployment
+        with:
+          deployment: rest.deployment
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedeployment
+        description: Delete Deployment
+        call: admin-deployment.deletedeployment
+        with:
+          deployment: rest.deployment
+          force: rest.force
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-deployment-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Admin API — deployment. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-deployments
+      description: List Deployments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-deployment.listdeployments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-deployment
+      description: Create Deployment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-deployment.createdeployment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-deployment
+      description: Get Deployment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: admin-deployment.getdeployment
+      with:
+        deployment: tools.deployment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-deployment
+      description: Update Deployment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: admin-deployment.updatedeployment
+      with:
+        deployment: tools.deployment
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-deployment
+      description: Delete Deployment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: admin-deployment.deletedeployment
+      with:
+        deployment: tools.deployment
+        force: tools.force
+      outputParameters:
+      - type: object
+        mapping: $.
