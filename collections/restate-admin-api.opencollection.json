@@ -1,0 +1,537 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Admin API",
+    "version": "1.4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cluster_health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cluster Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cluster-health"
+          },
+          "docs": "Get the cluster health."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "deployment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/deployments"
+          },
+          "docs": "List all registered deployments."
+        },
+        {
+          "info": {
+            "name": "Create Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/deployments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create deployment. Restate will invoke the endpoint to gather additional information required for registration, such as the services exposed by the deployment. If the deployment is already registered, this method will fail unless `force` is set to `true`."
+        },
+        {
+          "info": {
+            "name": "Get Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/deployments/:deployment",
+            "params": [
+              {
+                "name": "deployment",
+                "value": "",
+                "type": "path",
+                "description": "Deployment identifier"
+              }
+            ]
+          },
+          "docs": "Get deployment metadata"
+        },
+        {
+          "info": {
+            "name": "Update Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/deployments/:deployment",
+            "params": [
+              {
+                "name": "deployment",
+                "value": "",
+                "type": "path",
+                "description": "Deployment identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update deployment. Invokes the endpoint and replaces the existing deployment metadata with the discovered information. This is a dangerous operation that should be used only when there are failing invocations on the deployment that cannot be resolved any other way. Sense checks are applied to test that the new deployment is sufficiently similar to the old one."
+        },
+        {
+          "info": {
+            "name": "Delete Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/deployments/:deployment",
+            "params": [
+              {
+                "name": "deployment",
+                "value": "",
+                "type": "path",
+                "description": "Deployment identifier"
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, the deployment will be forcefully deleted. This might break in-flight invocations, use with caution."
+              }
+            ]
+          },
+          "docs": "Delete deployment. Currently it's supported to remove a deployment only using the force flag"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/health"
+          },
+          "docs": "Check REST API Health."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "invocation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete An Invocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/invocations/:invocation_id",
+            "params": [
+              {
+                "name": "invocation_id",
+                "value": "",
+                "type": "path",
+                "description": "Invocation identifier."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "If cancel, it will gracefully terminate the invocation. If kill, it will terminate the invocation with a hard stop. If purge, it will only cleanup the response for completed invocations, and leave unaffected an in-flight invocation."
+              }
+            ]
+          },
+          "docs": "Use kill_invocation/cancel_invocation/purge_invocation instead."
+        },
+        {
+          "info": {
+            "name": "Cancel An Invocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/invocations/:invocation_id/cancel",
+            "params": [
+              {
+                "name": "invocation_id",
+                "value": "",
+                "type": "path",
+                "description": "Invocation identifier."
+              }
+            ]
+          },
+          "docs": "Cancel the given invocation. Canceling an invocation allows it to free any resources it is holding and roll back any changes it has made so far, running compensation code. For more details, checkout https://docs.restate.dev/guides/sagas"
+        },
+        {
+          "info": {
+            "name": "Kill An Invocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/invocations/:invocation_id/kill",
+            "params": [
+              {
+                "name": "invocation_id",
+                "value": "",
+                "type": "path",
+                "description": "Invocation identifier."
+              }
+            ]
+          },
+          "docs": "Kill the given invocation. This does not guarantee consistency for virtual object instance state, in-flight invocations to other services, etc."
+        },
+        {
+          "info": {
+            "name": "Purge An Invocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/invocations/:invocation_id/purge",
+            "params": [
+              {
+                "name": "invocation_id",
+                "value": "",
+                "type": "path",
+                "description": "Invocation identifier."
+              }
+            ]
+          },
+          "docs": "Purge the given invocation. This cleanups all the state for the given invocation. This command applies only to completed invocations."
+        },
+        {
+          "info": {
+            "name": "Purge An Invocation Journal",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/invocations/:invocation_id/purge-journal",
+            "params": [
+              {
+                "name": "invocation_id",
+                "value": "",
+                "type": "path",
+                "description": "Invocation identifier."
+              }
+            ]
+          },
+          "docs": "Purge the given invocation journal. This cleanups only the journal for the given invocation, retaining the metadata. This command applies only to completed invocations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "openapi",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenAPI Specification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/openapi"
+          },
+          "docs": "OpenAPI Specification"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services"
+          },
+          "docs": "List all registered services."
+        },
+        {
+          "info": {
+            "name": "Get Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services/:service",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              }
+            ]
+          },
+          "docs": "Get a registered service."
+        },
+        {
+          "info": {
+            "name": "Modify A Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/services/:service",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a registered service."
+        },
+        {
+          "info": {
+            "name": "Get Service OpenAPI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services/:service/openapi",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              }
+            ]
+          },
+          "docs": "Get the service OpenAPI 3.1 contract."
+        },
+        {
+          "info": {
+            "name": "Modify A Service State",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/services/:service/state",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify service state"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "service_handler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Service Handlers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services/:service/handlers",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              }
+            ]
+          },
+          "docs": "List all the handlers of the given service."
+        },
+        {
+          "info": {
+            "name": "Get Service Handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services/:service/handlers/:handler",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              },
+              {
+                "name": "handler",
+                "value": "",
+                "type": "path",
+                "description": "Handler name."
+              }
+            ]
+          },
+          "docs": "Get the handler of a service"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subscription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions",
+            "params": [
+              {
+                "name": "sink",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the exact specified sink."
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the exact specified source."
+              }
+            ]
+          },
+          "docs": "List all subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create subscription."
+        },
+        {
+          "info": {
+            "name": "Get Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscription",
+            "params": [
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Subscription identifier"
+              }
+            ]
+          },
+          "docs": "Get subscription"
+        },
+        {
+          "info": {
+            "name": "Delete Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscription",
+            "params": [
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Subscription identifier"
+              }
+            ]
+          },
+          "docs": "Delete subscription."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "version",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Admin Version Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/version"
+          },
+          "docs": "Obtain admin version information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
