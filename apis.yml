@@ -78,7 +78,7 @@ common:
     url: https://discord.gg/skW3AZ6uGd
   - type: Blog
     url: https://restate.dev/blog/
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.restate.dev/llms.txt
 maintainers:
   - FN: Kin Lane
