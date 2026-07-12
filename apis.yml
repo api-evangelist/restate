@@ -52,6 +52,10 @@ apis:
       - type: KubernetesCRD
         url: https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 common:
+  - type: TrustCenter
+    url: security/restate-trust-center.yml
+  - type: DomainSecurity
+    url: security/restate-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/restatedev
   - type: Website
