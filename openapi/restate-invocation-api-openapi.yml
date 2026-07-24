@@ -1,0 +1,263 @@
+openapi: 3.0.0
+info:
+  title: Admin cluster_health invocation API
+  description: This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.
+  version: 1.4.0
+tags:
+- name: invocation
+  description: Invocation management
+  externalDocs:
+    url: https://docs.restate.dev/operate/invocation
+paths:
+  /invocations/{invocation_id}:
+    delete:
+      tags:
+      - invocation
+      summary: Delete An Invocation
+      description: Use kill_invocation/cancel_invocation/purge_invocation instead.
+      operationId: delete_invocation
+      parameters:
+      - name: invocation_id
+        in: path
+        description: Invocation identifier.
+        required: true
+        schema:
+          type: string
+      - name: mode
+        in: query
+        description: If cancel, it will gracefully terminate the invocation. If kill, it will terminate the invocation with a hard stop. If purge, it will only cleanup the response for completed invocations, and leave unaffected an in-flight invocation.
+        style: simple
+        schema:
+          $ref: '#/components/schemas/DeletionMode'
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+      deprecated: true
+  /invocations/{invocation_id}/cancel:
+    patch:
+      tags:
+      - invocation
+      summary: Cancel An Invocation
+      description: Cancel the given invocation. Canceling an invocation allows it to free any resources it is holding and roll back any changes it has made so far, running compensation code. For more details, checkout https://docs.restate.dev/guides/sagas
+      externalDocs:
+        url: https://docs.restate.dev/guides/sagas
+      operationId: cancel_invocation
+      parameters:
+      - name: invocation_id
+        in: path
+        description: Invocation identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The invocation has been cancelled.
+        '202':
+          description: The cancellation signal was appended to the journal and will be processed by the SDK.
+        404 Not Found:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        503 Service Unavailable:
+          description: Error when routing the request within restate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        400 Bad Request:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        409 Conflict:
+          description: The invocation was already completed, so it cannot be cancelled nor killed. You can instead purge the invocation, in order for restate to forget it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+  /invocations/{invocation_id}/kill:
+    patch:
+      tags:
+      - invocation
+      summary: Kill An Invocation
+      description: Kill the given invocation. This does not guarantee consistency for virtual object instance state, in-flight invocations to other services, etc.
+      operationId: kill_invocation
+      parameters:
+      - name: invocation_id
+        in: path
+        description: Invocation identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+        404 Not Found:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        503 Service Unavailable:
+          description: Error when routing the request within restate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        400 Bad Request:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        409 Conflict:
+          description: The invocation was already completed, so it cannot be cancelled nor killed. You can instead purge the invocation, in order for restate to forget it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+  /invocations/{invocation_id}/purge:
+    patch:
+      tags:
+      - invocation
+      summary: Purge An Invocation
+      description: Purge the given invocation. This cleanups all the state for the given invocation. This command applies only to completed invocations.
+      operationId: purge_invocation
+      parameters:
+      - name: invocation_id
+        in: path
+        description: Invocation identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+        404 Not Found:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        503 Service Unavailable:
+          description: Error when routing the request within restate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        400 Bad Request:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        409 Conflict:
+          description: The invocation is not yet completed. An invocation can be purged only when completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+  /invocations/{invocation_id}/purge-journal:
+    patch:
+      tags:
+      - invocation
+      summary: Purge An Invocation Journal
+      description: Purge the given invocation journal. This cleanups only the journal for the given invocation, retaining the metadata. This command applies only to completed invocations.
+      operationId: purge_journal
+      parameters:
+      - name: invocation_id
+        in: path
+        description: Invocation identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+        404 Not Found:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        503 Service Unavailable:
+          description: Error when routing the request within restate.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        400 Bad Request:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        409 Conflict:
+          description: The invocation is not yet completed. An invocation can be purged only when completed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+components:
+  schemas:
+    DeletionMode:
+      type: string
+      enum:
+      - Cancel
+      - Kill
+      - Purge
+    ErrorDescriptionResponse:
+      title: Error description response
+      description: Error details of the response
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+        restate_code:
+          title: Restate code
+          description: Restate error code describing this error
+          type: string
+          nullable: true
+externalDocs:
+  url: https://docs.restate.dev/operate/

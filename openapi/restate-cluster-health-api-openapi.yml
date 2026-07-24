@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: Admin cluster_health API
+  description: This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.
+  version: 1.4.0
+tags:
+- name: cluster_health
+  description: Cluster health
+paths:
+  /cluster-health:
+    get:
+      tags:
+      - cluster_health
+      summary: Cluster Health
+      description: Get the cluster health.
+      operationId: cluster_health
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterHealthResponse'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+components:
+  schemas:
+    ErrorDescriptionResponse:
+      title: Error description response
+      description: Error details of the response
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+        restate_code:
+          title: Restate code
+          description: Restate error code describing this error
+          type: string
+          nullable: true
+    ClusterHealthResponse:
+      type: object
+      required:
+      - cluster_name
+      properties:
+        cluster_name:
+          description: Cluster name
+          type: string
+        metadata_cluster_health:
+          description: Embedded metadata cluster health if it was enabled
+          allOf:
+          - $ref: '#/components/schemas/EmbeddedMetadataClusterHealth'
+          nullable: true
+    EmbeddedMetadataClusterHealth:
+      type: object
+      required:
+      - members
+      properties:
+        members:
+          description: Current members of the embedded metadata cluster
+          type: array
+          items:
+            type: integer
+            format: uint32
+            minimum: 0.0
+externalDocs:
+  url: https://docs.restate.dev/operate/

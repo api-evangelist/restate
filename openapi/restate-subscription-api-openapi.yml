@@ -1,0 +1,278 @@
+openapi: 3.0.0
+info:
+  title: Admin cluster_health subscription API
+  description: This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.
+  version: 1.4.0
+tags:
+- name: subscription
+  description: Subscription management
+  externalDocs:
+    url: https://docs.restate.dev/operate/invocation#managing-kafka-subscriptions
+paths:
+  /subscriptions:
+    get:
+      tags:
+      - subscription
+      summary: List Subscriptions
+      description: List all subscriptions.
+      operationId: list_subscriptions
+      parameters:
+      - name: sink
+        in: query
+        description: Filter by the exact specified sink.
+        style: simple
+        schema:
+          type: string
+      - name: source
+        in: query
+        description: Filter by the exact specified source.
+        style: simple
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSubscriptionsResponse'
+    post:
+      tags:
+      - subscription
+      summary: Create Subscription
+      description: Create subscription.
+      externalDocs:
+        url: https://docs.restate.dev/operate/invocation#managing-kafka-subscriptions
+      operationId: create_subscription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubscriptionRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+  /subscriptions/{subscription}:
+    get:
+      tags:
+      - subscription
+      summary: Get Subscription
+      description: Get subscription
+      operationId: get_subscription
+      parameters:
+      - name: subscription
+        in: path
+        description: Subscription identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+    delete:
+      tags:
+      - subscription
+      summary: Delete Subscription
+      description: Delete subscription.
+      operationId: delete_subscription
+      parameters:
+      - name: subscription
+        in: path
+        description: Subscription identifier
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDescriptionResponse'
+components:
+  schemas:
+    SubscriptionResponse:
+      type: object
+      required:
+      - id
+      - options
+      - sink
+      - source
+      properties:
+        id:
+          $ref: '#/components/schemas/String'
+        source:
+          type: string
+        sink:
+          type: string
+        options:
+          type: object
+          additionalProperties:
+            type: string
+    CreateSubscriptionRequest:
+      type: object
+      required:
+      - sink
+      - source
+      properties:
+        source:
+          title: Source
+          description: 'Source uri. Accepted forms:
+
+
+            * `kafka://<cluster_name>/<topic_name>`, e.g. `kafka://my-cluster/my-topic`'
+          type: string
+        sink:
+          title: Sink
+          description: 'Sink uri. Accepted forms:
+
+
+            * `service://<service_name>/<service_name>`, e.g. `service://Counter/count`'
+          type: string
+        options:
+          title: Options
+          description: Additional options to apply to the subscription.
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+    ListSubscriptionsResponse:
+      type: object
+      required:
+      - subscriptions
+      properties:
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubscriptionResponse'
+    ErrorDescriptionResponse:
+      title: Error description response
+      description: Error details of the response
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+        restate_code:
+          title: Restate code
+          description: Restate error code describing this error
+          type: string
+          nullable: true
+    String:
+      type: string
+externalDocs:
+  url: https://docs.restate.dev/operate/

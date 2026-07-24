@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: Admin cluster_health version API
+  description: This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.
+  version: 1.4.0
+tags:
+- name: version
+  description: API Version
+paths:
+  /version:
+    get:
+      tags:
+      - version
+      summary: Admin Version Information
+      description: Obtain admin version information.
+      operationId: version
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionInformation'
+components:
+  schemas:
+    VersionInformation:
+      type: object
+      required:
+      - ingress_endpoint
+      - max_admin_api_version
+      - min_admin_api_version
+      - version
+      properties:
+        version:
+          title: Admin server version
+          description: Version of the admin server
+          type: string
+        min_admin_api_version:
+          title: Min admin API version
+          description: Minimum supported admin API version by the admin server
+          type: integer
+          format: uint16
+          minimum: 0.0
+        max_admin_api_version:
+          title: Max admin API version
+          description: Maximum supported admin API version by the admin server
+          type: integer
+          format: uint16
+          minimum: 0.0
+        ingress_endpoint:
+          title: Ingress endpoint
+          description: Ingress endpoint that the Web UI should use to interact with.
+          type: string
+          format: uri
+externalDocs:
+  url: https://docs.restate.dev/operate/

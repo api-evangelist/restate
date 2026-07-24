@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  title: Admin cluster_health openapi API
+  description: This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.
+  version: 1.4.0
+tags:
+- name: openapi
+paths:
+  /openapi:
+    get:
+      tags:
+      - openapi
+      summary: OpenAPI Specification
+      externalDocs:
+        url: https://swagger.io/specification/
+      operationId: openapi_spec
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+externalDocs:
+  url: https://docs.restate.dev/operate/
