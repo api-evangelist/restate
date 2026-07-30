@@ -5,7 +5,19 @@ description: >-
   faults. It provides durable execution for workflows, event-driven handlers, and stateful orchestration of
   microservices with exactly-once semantics, automatic retries, and built-in state management.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/restate.png
 tags:
   - Durable Execution
   - Workflows
@@ -17,40 +29,294 @@ created: '2026-03-26'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: restate:restate-admin
-    name: Restate Admin API
-    description: >-
-      The Restate Admin API provides endpoints for managing service deployments, inspecting service metadata, managing
-      in-flight invocations, and monitoring the health of the Restate server. It enables operators to register service
-      deployments, purge completed invocations, and configure services programmatically.
-    humanURL: https://restate.dev/
-    baseURL: http://localhost:9070
-    tags:
-      - Deployments
-      - Services
-      - Invocations
-      - Administration
-    properties:
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/openapi/restate-admin-api.yml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json
-      - type: Vocabulary
-        url: https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
-      - type: Documentation
-        url: https://docs.restate.dev/
-      - type: GitHubRepository
-        url: https://github.com/restatedev/restate
-      - type: KubernetesCRD
-        url: https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
-      - type: KubernetesCRD
-        url: https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml
-      - type: KubernetesCRD
-        url: https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
+- aid: restate:restate-cluster-health-api
+  name: Restate cluster_health API
+  description: Cluster health
+  humanURL: https://restate.dev/
+  baseURL: http://localhost:9070
+  tags:
+  - cluster_health
+  properties:
+  - type: OpenAPI
+    url: openapi/restate-cluster-health-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
+  - type: Documentation
+    url: https://docs.restate.dev/
+  - type: GitHubRepository
+    url: https://github.com/restatedev/restate
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
+- aid: restate:restate-deployment-api
+  name: Restate deployment API
+  description: Service Deployment management
+  humanURL: https://restate.dev/
+  baseURL: http://localhost:9070
+  tags:
+  - deployment
+  properties:
+  - type: OpenAPI
+    url: openapi/restate-deployment-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
+  - type: Documentation
+    url: https://docs.restate.dev/
+  - type: GitHubRepository
+    url: https://github.com/restatedev/restate
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
+- aid: restate:restate-health-api
+  name: Restate health API
+  description: Admin API health
+  humanURL: https://restate.dev/
+  baseURL: http://localhost:9070
+  tags:
+  - health
+  properties:
+  - type: OpenAPI
+    url: openapi/restate-health-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
+  - type: Documentation
+    url: https://docs.restate.dev/
+  - type: GitHubRepository
+    url: https://github.com/restatedev/restate
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
+- aid: restate:restate-invocation-api
+  name: Restate invocation API
+  description: Invocation management
+  humanURL: https://restate.dev/
+  baseURL: http://localhost:9070
+  tags:
+  - invocation
+  properties:
+  - type: OpenAPI
+    url: openapi/restate-invocation-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
+  - type: Documentation
+    url: https://docs.restate.dev/
+  - type: GitHubRepository
+    url: https://github.com/restatedev/restate
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
+- aid: restate:restate-openapi-api
+  name: Restate openapi API
+  description: The openapi API from Restate — 1 operation(s) for openapi.
+  humanURL: https://restate.dev/
+  baseURL: http://localhost:9070
+  tags:
+  - openapi
+  properties:
+  - type: OpenAPI
+    url: openapi/restate-openapi-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
+  - type: Documentation
+    url: https://docs.restate.dev/
+  - type: GitHubRepository
+    url: https://github.com/restatedev/restate
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
+- aid: restate:restate-service-api
+  name: Restate service API
+  description: Service management
+  humanURL: https://restate.dev/
+  baseURL: http://localhost:9070
+  tags:
+  - service
+  properties:
+  - type: OpenAPI
+    url: openapi/restate-service-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
+  - type: Documentation
+    url: https://docs.restate.dev/
+  - type: GitHubRepository
+    url: https://github.com/restatedev/restate
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
+- aid: restate:restate-service-handler-api
+  name: Restate service_handler API
+  description: Service handlers metadata
+  humanURL: https://restate.dev/
+  baseURL: http://localhost:9070
+  tags:
+  - service_handler
+  properties:
+  - type: OpenAPI
+    url: openapi/restate-service-handler-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
+  - type: Documentation
+    url: https://docs.restate.dev/
+  - type: GitHubRepository
+    url: https://github.com/restatedev/restate
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
+- aid: restate:restate-subscription-api
+  name: Restate subscription API
+  description: Subscription management
+  humanURL: https://restate.dev/
+  baseURL: http://localhost:9070
+  tags:
+  - subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/restate-subscription-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
+  - type: Documentation
+    url: https://docs.restate.dev/
+  - type: GitHubRepository
+    url: https://github.com/restatedev/restate
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
+- aid: restate:restate-version-api
+  name: Restate version API
+  description: API Version
+  humanURL: https://restate.dev/
+  baseURL: http://localhost:9070
+  tags:
+  - version
+  properties:
+  - type: OpenAPI
+    url: openapi/restate-version-api-openapi.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml
+  - type: Documentation
+    url: https://docs.restate.dev/
+  - type: GitHubRepository
+    url: https://github.com/restatedev/restate
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml
+  - type: KubernetesCRD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/restate-agentic-access.yml
