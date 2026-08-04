@@ -1,0 +1,30 @@
+{
+  "provider": "restate",
+  "sources": [
+    "restate-cluster-health-api-openapi.yml",
+    "restate-deployment-api-openapi.yml",
+    "restate-health-api-openapi.yml",
+    "restate-invocation-api-openapi.yml",
+    "restate-openapi-api-openapi.yml",
+    "restate-service-api-openapi.yml",
+    "restate-service-handler-api-openapi.yml",
+    "restate-subscription-api-openapi.yml",
+    "restate-version-api-openapi.yml"
+  ],
+  "outputs": [
+    "restate-cluster-health-api-openapi.yml",
+    "restate-deployment-api-openapi.yml",
+    "restate-health-api-openapi.yml",
+    "restate-invocation-api-openapi.yml",
+    "restate-openapi-api-openapi.yml",
+    "restate-service-api-openapi.yml",
+    "restate-service-handler-api-openapi.yml",
+    "restate-subscription-api-openapi.yml",
+    "restate-version-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
