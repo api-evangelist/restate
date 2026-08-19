@@ -1,0 +1,98 @@
+{
+  "item": [
+    {
+      "id": "529ed9cc-7b66-4b01-8335-5d712f625aa8",
+      "name": "openapi",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a04b226d-c2ca-4445-bce7-a2ded9a76cc3",
+          "name": "OpenAPI Specification",
+          "request": {
+            "name": "OpenAPI Specification",
+            "description": {},
+            "url": {
+              "path": [
+                "openapi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b17469c-43f1-449f-ad45-4bbce725436a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openapi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0adaa2c1-3301-4e25-89bd-a612de7137e6",
+    "name": "Admin cluster_health openapi API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Admin cluster_health invocation API",
+    "version": "1.4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "invocation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete An Invocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/invocations/:invocation_id",
+            "params": [
+              {
+                "name": "invocation_id",
+                "value": "",
+                "type": "path",
+                "description": "Invocation identifier."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "If cancel, it will gracefully terminate the invocation. If kill, it will terminate the invocation with a hard stop. If purge, it will only cleanup the response for completed invocations, and leave unaffected an in-flight invocation."
+              }
+            ]
+          },
+          "docs": "Use kill_invocation/cancel_invocation/purge_invocation instead."
+        },
+        {
+          "info": {
+            "name": "Cancel An Invocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/invocations/:invocation_id/cancel",
+            "params": [
+              {
+                "name": "invocation_id",
+                "value": "",
+                "type": "path",
+                "description": "Invocation identifier."
+              }
+            ]
+          },
+          "docs": "Cancel the given invocation. Canceling an invocation allows it to free any resources it is holding and roll back any changes it has made so far, running compensation code. For more details, checkout https://docs.restate.dev/guides/sagas"
+        },
+        {
+          "info": {
+            "name": "Kill An Invocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/invocations/:invocation_id/kill",
+            "params": [
+              {
+                "name": "invocation_id",
+                "value": "",
+                "type": "path",
+                "description": "Invocation identifier."
+              }
+            ]
+          },
+          "docs": "Kill the given invocation. This does not guarantee consistency for virtual object instance state, in-flight invocations to other services, etc."
+        },
+        {
+          "info": {
+            "name": "Purge An Invocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/invocations/:invocation_id/purge",
+            "params": [
+              {
+                "name": "invocation_id",
+                "value": "",
+                "type": "path",
+                "description": "Invocation identifier."
+              }
+            ]
+          },
+          "docs": "Purge the given invocation. This cleanups all the state for the given invocation. This command applies only to completed invocations."
+        },
+        {
+          "info": {
+            "name": "Purge An Invocation Journal",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/invocations/:invocation_id/purge-journal",
+            "params": [
+              {
+                "name": "invocation_id",
+                "value": "",
+                "type": "path",
+                "description": "Invocation identifier."
+              }
+            ]
+          },
+          "docs": "Purge the given invocation journal. This cleanups only the journal for the given invocation, retaining the metadata. This command applies only to completed invocations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

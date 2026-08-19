@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Admin cluster_health subscription API",
+    "version": "1.4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subscription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions",
+            "params": [
+              {
+                "name": "sink",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the exact specified sink."
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the exact specified source."
+              }
+            ]
+          },
+          "docs": "List all subscriptions."
+        },
+        {
+          "info": {
+            "name": "Create Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create subscription."
+        },
+        {
+          "info": {
+            "name": "Get Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscription",
+            "params": [
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Subscription identifier"
+              }
+            ]
+          },
+          "docs": "Get subscription"
+        },
+        {
+          "info": {
+            "name": "Delete Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscription",
+            "params": [
+              {
+                "name": "subscription",
+                "value": "",
+                "type": "path",
+                "description": "Subscription identifier"
+              }
+            ]
+          },
+          "docs": "Delete subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Admin cluster_health service_handler API",
+    "version": "1.4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "service_handler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Service Handlers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services/:service/handlers",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              }
+            ]
+          },
+          "docs": "List all the handlers of the given service."
+        },
+        {
+          "info": {
+            "name": "Get Service Handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services/:service/handlers/:handler",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              },
+              {
+                "name": "handler",
+                "value": "",
+                "type": "path",
+                "description": "Handler name."
+              }
+            ]
+          },
+          "docs": "Get the handler of a service"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

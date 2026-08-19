@@ -1,0 +1,802 @@
+{
+  "item": [
+    {
+      "id": "f389c321-fb10-441b-9d35-1ff7ba6d82e5",
+      "name": "service_handler",
+      "description": {
+        "content": "Service handlers metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f930e995-cf95-47b1-82da-67da8ef2d181",
+          "name": "List Service Handlers",
+          "request": {
+            "name": "List Service Handlers",
+            "description": {
+              "content": "List all the handlers of the given service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                ":service",
+                "handlers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "service",
+                  "description": "(Required) Fully qualified service name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "842ac123-f301-4857-83dd-c27840793359",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"handlers\": [\n    {\n      \"input_description\": \"string\",\n      \"name\": \"string\",\n      \"output_description\": \"string\",\n      \"ty\": \"Exclusive\",\n      \"documentation\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      },\n      \"idempotency_retention\": \"string\",\n      \"workflow_completion_retention\": \"string\",\n      \"journal_retention\": \"string\",\n      \"inactivity_timeout\": \"string\",\n      \"abort_timeout\": \"string\",\n      \"enable_lazy_state\": false,\n      \"public\": true,\n      \"input_json_schema\": {},\n      \"output_json_schema\": {}\n    },\n    {\n      \"input_description\": \"string\",\n      \"name\": \"string\",\n      \"output_description\": \"string\",\n      \"ty\": \"Workflow\",\n      \"documentation\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      },\n      \"idempotency_retention\": \"string\",\n      \"workflow_completion_retention\": \"string\",\n      \"journal_retention\": \"string\",\n      \"inactivity_timeout\": \"string\",\n      \"abort_timeout\": \"string\",\n      \"enable_lazy_state\": false,\n      \"public\": true,\n      \"input_json_schema\": {},\n      \"output_json_schema\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cacd109-0d57-48f5-8ff5-1c8a1979657d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f14e5b0-dbb5-4ba4-a79d-a5c85d2f33e7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d06496b7-0190-4ec4-957b-4df37465712d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "426e6ce7-b7c9-4944-9589-81885f8dc06e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3462627a-6736-41a4-b5fe-8eacc89255e7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c2e004e-5b60-4c29-96a1-60e85dbb03c6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23c940c6-67c7-4576-88e2-ca5237f41aa5",
+          "name": "Get Service Handler",
+          "request": {
+            "name": "Get Service Handler",
+            "description": {
+              "content": "Get the handler of a service",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                ":service",
+                "handlers",
+                ":handler"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "service",
+                  "description": "(Required) Fully qualified service name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "handler",
+                  "description": "(Required) Handler name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce201562-7616-4fd1-ae64-649037e2c264",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers",
+                    ":handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "handler",
+                      "description": "(Required) Handler name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"input_description\": \"string\",\n  \"name\": \"string\",\n  \"output_description\": \"string\",\n  \"ty\": \"Exclusive\",\n  \"documentation\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  },\n  \"idempotency_retention\": \"string\",\n  \"workflow_completion_retention\": \"string\",\n  \"journal_retention\": \"string\",\n  \"inactivity_timeout\": \"string\",\n  \"abort_timeout\": \"string\",\n  \"enable_lazy_state\": false,\n  \"public\": true,\n  \"input_json_schema\": {},\n  \"output_json_schema\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1dd2fa0d-95f6-4754-8759-0acd413efc01",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers",
+                    ":handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "handler",
+                      "description": "(Required) Handler name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d214507-176c-4542-9d3c-2dc6b8609926",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers",
+                    ":handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "handler",
+                      "description": "(Required) Handler name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf16e2b4-ba15-441b-bf8e-345d758afd4b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers",
+                    ":handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "handler",
+                      "description": "(Required) Handler name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "335f6ab6-a8ff-4b62-8d42-3b1f1618a48a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers",
+                    ":handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "handler",
+                      "description": "(Required) Handler name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb81dd23-7f27-4235-aa99-ba5e4a4ebcee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers",
+                    ":handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "handler",
+                      "description": "(Required) Handler name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a544dc6-1efc-4d93-92fc-20dab71164a6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service",
+                    "handlers",
+                    ":handler"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service",
+                      "description": "(Required) Fully qualified service name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "handler",
+                      "description": "(Required) Handler name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8e9ac600-33de-4fae-9438-f348658684e3",
+    "name": "Admin cluster_health service_handler API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.",
+      "type": "text/plain"
+    }
+  }
+}

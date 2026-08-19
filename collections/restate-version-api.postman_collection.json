@@ -1,0 +1,101 @@
+{
+  "item": [
+    {
+      "id": "5e37cf67-b032-4d9d-a671-50719051019b",
+      "name": "version",
+      "description": {
+        "content": "API Version",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2f103607-0283-40e8-bd52-a1f548e1698b",
+          "name": "Admin Version Information",
+          "request": {
+            "name": "Admin Version Information",
+            "description": {
+              "content": "Obtain admin version information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0b6a3f2-df62-46b7-b25e-ad6f568fed67",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ingress_endpoint\": \"http://S.hgkRElYq,oHzVlSsxxTLUAU.e2\",\n  \"max_admin_api_version\": 6916,\n  \"min_admin_api_version\": 233,\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a4a98867-6e46-4dd4-89b5-18b4a5bd92ae",
+    "name": "Admin cluster_health version API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.",
+      "type": "text/plain"
+    }
+  }
+}

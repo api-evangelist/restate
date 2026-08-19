@@ -1,0 +1,1628 @@
+{
+  "item": [
+    {
+      "id": "320f9b0f-eb61-4419-b797-de6f796b62ef",
+      "name": "deployment",
+      "description": {
+        "content": "Service Deployment management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a45a8483-2420-415d-a617-5af0e9d844d4",
+          "name": "List Deployments",
+          "request": {
+            "name": "List Deployments",
+            "description": {
+              "content": "List all registered deployments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b0e11e0-ba87-4ff8-a539-f93a0d9c5111",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deployments\": [\n    {\n      \"created_at\": \"string\",\n      \"http_version\": \"string\",\n      \"id\": \"string\",\n      \"max_protocol_version\": 3676,\n      \"min_protocol_version\": 1210,\n      \"protocol_type\": \"RequestResponse\",\n      \"services\": [\n        {\n          \"name\": \"string\",\n          \"revision\": 8504\n        },\n        {\n          \"name\": \"string\",\n          \"revision\": 1108\n        }\n      ],\n      \"uri\": \"string\",\n      \"additional_headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"sdk_version\": \"string\"\n    },\n    {\n      \"created_at\": \"string\",\n      \"http_version\": \"string\",\n      \"id\": \"string\",\n      \"max_protocol_version\": 7204,\n      \"min_protocol_version\": 5030,\n      \"protocol_type\": \"RequestResponse\",\n      \"services\": [\n        {\n          \"name\": \"string\",\n          \"revision\": 5760\n        },\n        {\n          \"name\": \"string\",\n          \"revision\": 8899\n        }\n      ],\n      \"uri\": \"string\",\n      \"additional_headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"sdk_version\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "961eabbd-c63c-45e6-aa48-e76f49328202",
+          "name": "Create Deployment",
+          "request": {
+            "name": "Create Deployment",
+            "description": {
+              "content": "Create deployment. Restate will invoke the endpoint to gather additional information required for registration, such as the services exposed by the deployment. If the deployment is already registered, this method will fail unless `force` is set to `true`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"force\": true,\n  \"dry_run\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4976abd-51da-468c-84f5-184f311c285d",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"force\": true,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"services\": [\n    {\n      \"deployment_id\": \"string\",\n      \"handlers\": [\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": \"Exclusive\",\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": true,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        },\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": \"Shared\",\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": true,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        }\n      ],\n      \"name\": \"string\",\n      \"public\": false,\n      \"revision\": 8984,\n      \"ty\": \"VirtualObject\",\n      \"documentation\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      },\n      \"idempotency_retention\": \"string\",\n      \"workflow_completion_retention\": \"string\",\n      \"journal_retention\": \"string\",\n      \"inactivity_timeout\": \"string\",\n      \"abort_timeout\": \"string\",\n      \"enable_lazy_state\": false\n    },\n    {\n      \"deployment_id\": \"string\",\n      \"handlers\": [\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": \"Shared\",\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": true,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        },\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": \"Exclusive\",\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": true,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        }\n      ],\n      \"name\": \"string\",\n      \"public\": true,\n      \"revision\": 3527,\n      \"ty\": \"Service\",\n      \"documentation\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      },\n      \"idempotency_retention\": \"string\",\n      \"workflow_completion_retention\": \"string\",\n      \"journal_retention\": \"string\",\n      \"inactivity_timeout\": \"string\",\n      \"abort_timeout\": \"string\",\n      \"enable_lazy_state\": false\n    }\n  ],\n  \"min_protocol_version\": 0,\n  \"max_protocol_version\": 0,\n  \"sdk_version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f9df3ac-9c0f-4b55-8539-70cf6b0ffe25",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"force\": true,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92bfb4d5-96e8-4e6f-999b-e92585a77eff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"force\": true,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54bb8cbe-2706-451e-81ae-969949fe370e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"force\": true,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbb63d79-61be-44bd-8a3a-8f9f791e8ad2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"force\": true,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38a8d99c-65c6-4dd8-b56f-0c8c7e918143",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"force\": true,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b14e542b-6b57-47da-bdc8-a814ee9961a0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"force\": true,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6aa5b1da-ddfe-4275-9ac6-fd490d57a47d",
+          "name": "Get Deployment",
+          "request": {
+            "name": "Get Deployment",
+            "description": {
+              "content": "Get deployment metadata",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                ":deployment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deployment",
+                  "description": "(Required) Deployment identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06f61863-8fc8-4d5c-97a6-b4f37644af26",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"http_version\": \"string\",\n  \"id\": \"string\",\n  \"max_protocol_version\": 9727,\n  \"min_protocol_version\": 3617,\n  \"protocol_type\": \"RequestResponse\",\n  \"services\": [\n    {\n      \"deployment_id\": \"string\",\n      \"handlers\": [\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": {\n            \"nullable\": true,\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": false,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        },\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": {\n            \"nullable\": true,\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": true,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        }\n      ],\n      \"name\": \"string\",\n      \"public\": false,\n      \"revision\": 1392,\n      \"ty\": \"VirtualObject\",\n      \"documentation\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"idempotency_retention\": \"string\",\n      \"workflow_completion_retention\": \"string\",\n      \"journal_retention\": \"string\",\n      \"inactivity_timeout\": \"string\",\n      \"abort_timeout\": \"string\",\n      \"enable_lazy_state\": true\n    },\n    {\n      \"deployment_id\": \"string\",\n      \"handlers\": [\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": {\n            \"nullable\": true,\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": true,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        },\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": {\n            \"nullable\": true,\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": true,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        }\n      ],\n      \"name\": \"string\",\n      \"public\": false,\n      \"revision\": 2981,\n      \"ty\": \"Service\",\n      \"documentation\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"idempotency_retention\": \"string\",\n      \"workflow_completion_retention\": \"string\",\n      \"journal_retention\": \"string\",\n      \"inactivity_timeout\": \"string\",\n      \"abort_timeout\": \"string\",\n      \"enable_lazy_state\": true\n    }\n  ],\n  \"uri\": \"string\",\n  \"additional_headers\": {\n    \"key_0\": \"string\"\n  },\n  \"sdk_version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "705bf07d-3c6e-45fa-8314-0480ea66980a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0a0e6e0-4e1d-44d4-bf23-a461482f1a09",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80186046-e6da-4396-8e9b-bcf195dde1eb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a0a2005-17e5-471c-8cc3-7d1a793e0b83",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef0e297d-ce90-4a3e-b717-fac6f0b4d84b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67eacb7a-2c83-4cfa-888e-b8a5d1b37e75",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d907605f-43b8-42c2-b855-04ccf4acd402",
+          "name": "Update Deployment",
+          "request": {
+            "name": "Update Deployment",
+            "description": {
+              "content": "Update deployment. Invokes the endpoint and replaces the existing deployment metadata with the discovered information. This is a dangerous operation that should be used only when there are failing invocations on the deployment that cannot be resolved any other way. Sense checks are applied to test that the new deployment is sufficiently similar to the old one.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                ":deployment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deployment",
+                  "description": "(Required) Deployment identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"dry_run\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4b67cd8e-47db-41cd-875d-fd799b832d61",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"http_version\": \"string\",\n  \"id\": \"string\",\n  \"max_protocol_version\": 8243,\n  \"min_protocol_version\": 6257,\n  \"protocol_type\": \"BidiStream\",\n  \"services\": [\n    {\n      \"deployment_id\": \"string\",\n      \"handlers\": [\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": {\n            \"nullable\": true,\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": false,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        },\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": {\n            \"nullable\": true,\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": true,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        }\n      ],\n      \"name\": \"string\",\n      \"public\": false,\n      \"revision\": 1564,\n      \"ty\": \"VirtualObject\",\n      \"documentation\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      },\n      \"idempotency_retention\": \"string\",\n      \"workflow_completion_retention\": \"string\",\n      \"journal_retention\": \"string\",\n      \"inactivity_timeout\": \"string\",\n      \"abort_timeout\": \"string\",\n      \"enable_lazy_state\": true\n    },\n    {\n      \"deployment_id\": \"string\",\n      \"handlers\": [\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": {\n            \"nullable\": true,\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": false,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        },\n        {\n          \"input_description\": \"string\",\n          \"name\": \"string\",\n          \"output_description\": \"string\",\n          \"ty\": {\n            \"nullable\": true,\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"documentation\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"idempotency_retention\": \"string\",\n          \"workflow_completion_retention\": \"string\",\n          \"journal_retention\": \"string\",\n          \"inactivity_timeout\": \"string\",\n          \"abort_timeout\": \"string\",\n          \"enable_lazy_state\": true,\n          \"public\": true,\n          \"input_json_schema\": {},\n          \"output_json_schema\": {}\n        }\n      ],\n      \"name\": \"string\",\n      \"public\": false,\n      \"revision\": 1165,\n      \"ty\": \"VirtualObject\",\n      \"documentation\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"idempotency_retention\": \"string\",\n      \"workflow_completion_retention\": \"string\",\n      \"journal_retention\": \"string\",\n      \"inactivity_timeout\": \"string\",\n      \"abort_timeout\": \"string\",\n      \"enable_lazy_state\": true\n    }\n  ],\n  \"uri\": \"string\",\n  \"additional_headers\": {\n    \"key_0\": \"string\"\n  },\n  \"sdk_version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b15b9769-27f5-4954-891f-9f0ae5a9a961",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af6ad447-96a7-4a9d-a7ea-874f7c5c0710",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "885b314b-9b4e-4e72-909a-a1b2dd3e048c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "baf34eda-da79-45b0-9956-d8fdb49881cf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2a7f926-5e9e-4036-9d0b-5faccdb4ad64",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e414961-781b-4913-b087-29d099fa5c7b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"<string>\",\n  \"additional_headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"use_http_11\": false,\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32206a0c-d7ce-45e3-8d22-a62efff20496",
+          "name": "Delete Deployment",
+          "request": {
+            "name": "Delete Deployment",
+            "description": {
+              "content": "Delete deployment. Currently it's supported to remove a deployment only using the force flag",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deployments",
+                ":deployment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "If true, the deployment will be forcefully deleted. This might break in-flight invocations, use with caution."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deployment",
+                  "description": "(Required) Deployment identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5982811e-b5f2-41bd-9af4-063cb2eabd53",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4a5500b-bd46-4081-8872-1431f190b8be",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3844905-326e-48f1-86ba-810f915e4f0d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4a859c0-3c97-4fd9-8a83-3e1924e62aaa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5e2a2d2-3fc8-47c4-b00c-e5dfd707658f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a801124b-c6ca-4888-84b0-79c4eed37d2e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b145921-dbef-4235-9769-cc9b303f7178",
+              "name": "Not implemented. Only using the force flag is supported at the moment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "300e6234-92b9-4e28-b7e9-0e08f56e90d5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    ":deployment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deployment",
+                      "description": "(Required) Deployment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"restate_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "73267679-50a0-4303-bbda-f848f3b5c218",
+    "name": "Admin cluster_health deployment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.",
+      "type": "text/plain"
+    }
+  }
+}

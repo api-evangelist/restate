@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Admin cluster_health API",
+    "version": "1.4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cluster_health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cluster Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cluster-health"
+          },
+          "docs": "Get the cluster health."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

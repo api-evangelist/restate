@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Admin cluster_health service API",
+    "version": "1.4.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services"
+          },
+          "docs": "List all registered services."
+        },
+        {
+          "info": {
+            "name": "Get Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services/:service",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              }
+            ]
+          },
+          "docs": "Get a registered service."
+        },
+        {
+          "info": {
+            "name": "Modify A Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/services/:service",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify a registered service."
+        },
+        {
+          "info": {
+            "name": "Get Service OpenAPI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/services/:service/openapi",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              }
+            ]
+          },
+          "docs": "Get the service OpenAPI 3.1 contract."
+        },
+        {
+          "info": {
+            "name": "Modify A Service State",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/services/:service/state",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "Fully qualified service name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify service state"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
