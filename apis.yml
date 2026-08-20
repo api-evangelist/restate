@@ -34,7 +34,8 @@ apis:
   description: Cluster health
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
-  tags:
+  tags: []
+  tags_raw:
   - cluster_health
   properties:
   - type: OpenAPI
@@ -67,6 +68,8 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
+  - Deployment
+  tags_raw:
   - deployment
   properties:
   - type: OpenAPI
@@ -99,6 +102,8 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
+  - Health
+  tags_raw:
   - health
   properties:
   - type: OpenAPI
@@ -131,6 +136,8 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
+  - Invocation
+  tags_raw:
   - invocation
   properties:
   - type: OpenAPI
@@ -163,6 +170,8 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
+  - OpenAPI
+  tags_raw:
   - openapi
   properties:
   - type: OpenAPI
@@ -195,6 +204,8 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
+  - Service
+  tags_raw:
   - service
   properties:
   - type: OpenAPI
@@ -226,7 +237,8 @@ apis:
   description: Service handlers metadata
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
-  tags:
+  tags: []
+  tags_raw:
   - service_handler
   properties:
   - type: OpenAPI
@@ -259,6 +271,8 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
+  - Subscription
+  tags_raw:
   - subscription
   properties:
   - type: OpenAPI
@@ -291,6 +305,8 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
+  - Version
+  tags_raw:
   - version
   properties:
   - type: OpenAPI
