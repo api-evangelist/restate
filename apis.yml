@@ -5,6 +5,18 @@ description: >-
   faults. It provides durable execution for workflows, event-driven handlers, and stateful orchestration of
   microservices with exactly-once semantics, automatic retries, and built-in state management.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
@@ -334,6 +346,10 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 common:
+  - type: IssueTracker
+    url: https://github.com/restatedev/restate/issues
+  - type: Releases
+    url: https://github.com/restatedev/restate/releases
   - type: AgenticAccess
     url: agentic-access/restate-agentic-access.yml
   - type: TrustCenter
