@@ -148,7 +148,7 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
-  - invocation
+  - Invocation
   tags_raw:
   - invocation
   properties:
