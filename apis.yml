@@ -182,7 +182,7 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
-  - Service
+  - Services
   tags_raw:
   - service
   properties:
@@ -317,6 +317,8 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
+  - OpenAPI
+  tags_raw:
   - Open API
   properties:
   - type: OpenAPI
