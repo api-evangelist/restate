@@ -1,16 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Admin cluster_health service API
-  description: This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.
+  title: Admin Service API
+  description: This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the Operate documentation. If you're looking for how to call your services, check out the Ingress HTTP API instead.
   version: 1.4.0
 tags:
-- name: service
+- name: Service
   description: Service management
 paths:
   /services:
     get:
       tags:
-      - service
+      - Service
       summary: List Services
       description: List all registered services.
       operationId: list_services
@@ -60,7 +60,7 @@ paths:
   /services/{service}:
     get:
       tags:
-      - service
+      - Service
       summary: Get Service
       description: Get a registered service.
       operationId: get_service
@@ -116,7 +116,7 @@ paths:
                 $ref: '#/components/schemas/ErrorDescriptionResponse'
     patch:
       tags:
-      - service
+      - Service
       summary: Modify A Service
       description: Modify a registered service.
       operationId: modify_service
@@ -179,7 +179,7 @@ paths:
   /services/{service}/openapi:
     get:
       tags:
-      - service
+      - Service
       summary: Get Service OpenAPI
       description: Get the service OpenAPI 3.1 contract.
       operationId: get_service_openapi
@@ -235,7 +235,7 @@ paths:
   /services/{service}/state:
     post:
       tags:
-      - service
+      - Service
       summary: Modify A Service State
       description: Modify service state
       operationId: modify_service_state
@@ -293,18 +293,83 @@ paths:
                 $ref: '#/components/schemas/ErrorDescriptionResponse'
 components:
   schemas:
-    ServiceType:
-      type: string
-      enum:
-      - Service
-      - VirtualObject
-      - Workflow
     HandlerMetadataType:
       type: string
       enum:
       - Exclusive
       - Shared
       - Workflow
+    ModifyServiceRequest:
+      type: object
+      properties:
+        public:
+          title: Public
+          description: If true, the service can be invoked through the ingress. If false, the service can be invoked only from another Restate service.
+          default: null
+          type:
+          - boolean
+          - 'null'
+        idempotency_retention:
+          title: Idempotency retention
+          description: 'Modify the retention of idempotent requests for this service.
+
+
+            Can be configured using the [`jiff::fmt::friendly`](https://docs.rs/jiff/latest/jiff/fmt/friendly/index.html) format or ISO8601.'
+          default: null
+          type:
+          - string
+          - 'null'
+        workflow_completion_retention:
+          title: Workflow completion retention
+          description: 'Modify the retention of the workflow completion. This can be modified only for workflow services!
+
+
+            Can be configured using the [`jiff::fmt::friendly`](https://docs.rs/jiff/latest/jiff/fmt/friendly/index.html) format or ISO8601.'
+          default: null
+          type:
+          - string
+          - 'null'
+        inactivity_timeout:
+          title: Inactivity timeout
+          description: 'This timer guards against stalled service/handler invocations. Once it expires, Restate triggers a graceful termination by asking the service invocation to suspend (which preserves intermediate progress).
+
+
+            The ''abort timeout'' is used to abort the invocation, in case it doesn''t react to the request to suspend.
+
+
+            Can be configured using the [`jiff::fmt::friendly`](https://docs.rs/jiff/latest/jiff/fmt/friendly/index.html) format or ISO8601.
+
+
+            This overrides the default inactivity timeout set in invoker options.'
+          default: null
+          type:
+          - string
+          - 'null'
+        abort_timeout:
+          title: Abort timeout
+          description: 'This timer guards against stalled service/handler invocations that are supposed to terminate. The abort timeout is started after the ''inactivity timeout'' has expired and the service/handler invocation has been asked to gracefully terminate. Once the timer expires, it will abort the service/handler invocation.
+
+
+            This timer potentially **interrupts** user code. If the user code needs longer to gracefully terminate, then this value needs to be set accordingly.
+
+
+            Can be configured using the [`jiff::fmt::friendly`](https://docs.rs/jiff/latest/jiff/fmt/friendly/index.html) format or ISO8601.
+
+
+            This overrides the default abort timeout set in invoker options.'
+          default: null
+          type:
+          - string
+          - 'null'
+    ListServicesResponse:
+      type: object
+      required:
+      - services
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceMetadata'
     HandlerMetadata:
       type: object
       required:
@@ -317,12 +382,12 @@ components:
         ty:
           allOf:
           - $ref: '#/components/schemas/HandlerMetadataType'
-          nullable: true
         documentation:
           title: Documentation
           description: Documentation of the handler, as propagated by the SDKs.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         metadata:
           title: Metadata
           description: Additional handler metadata, as propagated by the SDKs.
@@ -332,21 +397,24 @@ components:
         idempotency_retention:
           title: Idempotency retention
           description: The retention duration of idempotent requests for this service.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         workflow_completion_retention:
           title: Workflow completion retention
           description: The retention duration of workflows. Only available on workflow services.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         journal_retention:
           title: Journal retention
           description: 'The journal retention. When set, this applies to all requests to this handler.
 
 
             In case the request has an idempotency key, the `idempotency_retention` caps the maximum `journal_retention` time. In case this handler is a workflow handler, the `workflow_completion_retention` caps the maximum `journal_retention` time.'
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         inactivity_timeout:
           title: Inactivity timeout
           description: 'This timer guards against stalled service/handler invocations. Once it expires, Restate triggers a graceful termination by asking the service invocation to suspend (which preserves intermediate progress).
@@ -359,8 +427,9 @@ components:
 
 
             This overrides the default inactivity timeout set in invoker options.'
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         abort_timeout:
           title: Abort timeout
           description: 'This timer guards against stalled service/handler invocations that are supposed to terminate. The abort timeout is started after the ''inactivity timeout'' has expired and the service/handler invocation has been asked to gracefully terminate. Once the timer expires, it will abort the service/handler invocation.
@@ -373,13 +442,15 @@ components:
 
 
             This overrides the default abort timeout set in invoker options.'
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         enable_lazy_state:
           title: Enable lazy state
           description: If true, lazy state will be enabled for all invocations to this service. This is relevant only for Workflows and Virtual Objects.
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
         public:
           title: Public
           description: If true, this handler can be invoked through the ingress. If false, this handler can be invoked only from another Restate service.
@@ -396,68 +467,15 @@ components:
         input_json_schema:
           title: Input JSON Schema
           description: JSON Schema of the handler input
-          nullable: true
         output_json_schema:
           title: Output JSON Schema
           description: JSON Schema of the handler output
-          nullable: true
-    ModifyServiceRequest:
-      type: object
-      properties:
-        public:
-          title: Public
-          description: If true, the service can be invoked through the ingress. If false, the service can be invoked only from another Restate service.
-          default: null
-          type: boolean
-          nullable: true
-        idempotency_retention:
-          title: Idempotency retention
-          description: 'Modify the retention of idempotent requests for this service.
-
-
-            Can be configured using the [`jiff::fmt::friendly`](https://docs.rs/jiff/latest/jiff/fmt/friendly/index.html) format or ISO8601.'
-          default: null
-          type: string
-          nullable: true
-        workflow_completion_retention:
-          title: Workflow completion retention
-          description: 'Modify the retention of the workflow completion. This can be modified only for workflow services!
-
-
-            Can be configured using the [`jiff::fmt::friendly`](https://docs.rs/jiff/latest/jiff/fmt/friendly/index.html) format or ISO8601.'
-          default: null
-          type: string
-          nullable: true
-        inactivity_timeout:
-          title: Inactivity timeout
-          description: 'This timer guards against stalled service/handler invocations. Once it expires, Restate triggers a graceful termination by asking the service invocation to suspend (which preserves intermediate progress).
-
-
-            The ''abort timeout'' is used to abort the invocation, in case it doesn''t react to the request to suspend.
-
-
-            Can be configured using the [`jiff::fmt::friendly`](https://docs.rs/jiff/latest/jiff/fmt/friendly/index.html) format or ISO8601.
-
-
-            This overrides the default inactivity timeout set in invoker options.'
-          default: null
-          type: string
-          nullable: true
-        abort_timeout:
-          title: Abort timeout
-          description: 'This timer guards against stalled service/handler invocations that are supposed to terminate. The abort timeout is started after the ''inactivity timeout'' has expired and the service/handler invocation has been asked to gracefully terminate. Once the timer expires, it will abort the service/handler invocation.
-
-
-            This timer potentially **interrupts** user code. If the user code needs longer to gracefully terminate, then this value needs to be set accordingly.
-
-
-            Can be configured using the [`jiff::fmt::friendly`](https://docs.rs/jiff/latest/jiff/fmt/friendly/index.html) format or ISO8601.
-
-
-            This overrides the default abort timeout set in invoker options.'
-          default: null
-          type: string
-          nullable: true
+    ServiceType:
+      type: string
+      enum:
+      - Service
+      - VirtualObject
+      - Workflow
     ServiceMetadata:
       type: object
       required:
@@ -481,8 +499,9 @@ components:
         documentation:
           title: Documentation
           description: Documentation of the service, as propagated by the SDKs.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         metadata:
           title: Metadata
           description: Additional service metadata, as propagated by the SDKs.
@@ -506,21 +525,24 @@ components:
         idempotency_retention:
           title: Idempotency retention
           description: The retention duration of idempotent requests for this service.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         workflow_completion_retention:
           title: Workflow completion retention
           description: The retention duration of workflows. Only available on workflow services.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         journal_retention:
           title: Journal retention
           description: 'The journal retention. When set, this applies to all requests to all handlers of this service.
 
 
             In case the request has an idempotency key, the `idempotency_retention` caps the maximum `journal_retention` time. In case the request targets a workflow handler, the `workflow_completion_retention` caps the maximum `journal_retention` time.'
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         inactivity_timeout:
           title: Inactivity timeout
           description: 'This timer guards against stalled service/handler invocations. Once it expires, Restate triggers a graceful termination by asking the service invocation to suspend (which preserves intermediate progress).
@@ -533,8 +555,9 @@ components:
 
 
             This overrides the default inactivity timeout set in invoker options.'
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         abort_timeout:
           title: Abort timeout
           description: 'This timer guards against stalled service/handler invocations that are supposed to terminate. The abort timeout is started after the ''inactivity timeout'' has expired and the service/handler invocation has been asked to gracefully terminate. Once the timer expires, it will abort the service/handler invocation.
@@ -547,13 +570,30 @@ components:
 
 
             This overrides the default abort timeout set in invoker options.'
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         enable_lazy_state:
           title: Enable lazy state
           description: If true, lazy state will be enabled for all invocations to this service. This is relevant only for Workflows and Virtual Objects.
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
+    ErrorDescriptionResponse:
+      title: Error description response
+      description: Error details of the response
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+        restate_code:
+          title: Restate code
+          description: Restate error code describing this error
+          type:
+          - string
+          - 'null'
     ModifyServiceStateRequest:
       type: object
       required:
@@ -563,8 +603,9 @@ components:
         version:
           title: Version
           description: If set, the latest version of the state is compared with this value and the operation will fail when the versions differ.
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         object_key:
           title: Service key
           description: To what virtual object key to apply this change
@@ -579,28 +620,5 @@ components:
               type: integer
               format: uint8
               minimum: 0.0
-    ListServicesResponse:
-      type: object
-      required:
-      - services
-      properties:
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceMetadata'
-    ErrorDescriptionResponse:
-      title: Error description response
-      description: Error details of the response
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-        restate_code:
-          title: Restate code
-          description: Restate error code describing this error
-          type: string
-          nullable: true
 externalDocs:
   url: https://docs.restate.dev/operate/

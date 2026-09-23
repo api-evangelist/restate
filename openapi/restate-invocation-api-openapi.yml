@@ -1,10 +1,10 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Admin cluster_health invocation API
-  description: This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the [Operate documentation](https://docs.restate.dev/operate/). If you're looking for how to call your services, check out the [Ingress HTTP API](https://docs.restate.dev/invoke/http) instead.
+  title: Admin Invocation API
+  description: This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the Operate documentation. If you're looking for how to call your services, check out the Ingress HTTP API instead.
   version: 1.4.0
 tags:
-- name: invocation
+- name: Invocation
   description: Invocation management
   externalDocs:
     url: https://docs.restate.dev/operate/invocation
@@ -12,7 +12,7 @@ paths:
   /invocations/{invocation_id}:
     delete:
       tags:
-      - invocation
+      - Invocation
       summary: Delete An Invocation
       description: Use kill_invocation/cancel_invocation/purge_invocation instead.
       operationId: delete_invocation
@@ -72,7 +72,7 @@ paths:
   /invocations/{invocation_id}/cancel:
     patch:
       tags:
-      - invocation
+      - Invocation
       summary: Cancel An Invocation
       description: Cancel the given invocation. Canceling an invocation allows it to free any resources it is holding and roll back any changes it has made so far, running compensation code. For more details, checkout https://docs.restate.dev/guides/sagas
       externalDocs:
@@ -117,7 +117,7 @@ paths:
   /invocations/{invocation_id}/kill:
     patch:
       tags:
-      - invocation
+      - Invocation
       summary: Kill An Invocation
       description: Kill the given invocation. This does not guarantee consistency for virtual object instance state, in-flight invocations to other services, etc.
       operationId: kill_invocation
@@ -158,7 +158,7 @@ paths:
   /invocations/{invocation_id}/purge:
     patch:
       tags:
-      - invocation
+      - Invocation
       summary: Purge An Invocation
       description: Purge the given invocation. This cleanups all the state for the given invocation. This command applies only to completed invocations.
       operationId: purge_invocation
@@ -199,7 +199,7 @@ paths:
   /invocations/{invocation_id}/purge-journal:
     patch:
       tags:
-      - invocation
+      - Invocation
       summary: Purge An Invocation Journal
       description: Purge the given invocation journal. This cleanups only the journal for the given invocation, retaining the metadata. This command applies only to completed invocations.
       operationId: purge_journal
@@ -257,7 +257,8 @@ components:
         restate_code:
           title: Restate code
           description: Restate error code describing this error
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
 externalDocs:
   url: https://docs.restate.dev/operate/

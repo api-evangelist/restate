@@ -1,0 +1,29 @@
+# Front Door AI Index — restate — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: restate
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: restate.dev
+  final_host: restate.dev
+  ownership: own
+  owner: restate
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 13
+  host_score: 13
+  density: 6.65
+  words: 1954
+  tiers:
+    agentic: 4
+    core: 7
+    model: 2
+  ambiguous: 25
+  top_terms:
+    agent: 25
+    AI: 6
+    AI agent: 4
+    Gemini: 2
+    LLMs: 1

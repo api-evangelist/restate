@@ -1,15 +1,7 @@
 {
   "provider": "restate",
   "sources": [
-    "restate-cluster-health-api-openapi.yml",
-    "restate-deployment-api-openapi.yml",
-    "restate-health-api-openapi.yml",
-    "restate-invocation-api-openapi.yml",
-    "restate-openapi-api-openapi.yml",
-    "restate-service-api-openapi.yml",
-    "restate-service-handler-api-openapi.yml",
-    "restate-subscription-api-openapi.yml",
-    "restate-version-api-openapi.yml"
+    "_original/restate-admin-api.yml"
   ],
   "outputs": [
     "restate-cluster-health-api-openapi.yml",
@@ -22,9 +14,27 @@
     "restate-subscription-api-openapi.yml",
     "restate-version-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "restate-admin-api.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "restate-admin-api.yml: declared missing tag: openapi",
+    "superseded outputs removed: restate-open-api-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 9 total)"
+  ],
+  "skipped": [
+    "restate-cluster-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "restate-deployment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "restate-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "restate-invocation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "restate-open-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "restate-service-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "restate-service-handler-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "restate-subscription-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "restate-version-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
