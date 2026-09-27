@@ -293,12 +293,6 @@ paths:
                 $ref: '#/components/schemas/ErrorDescriptionResponse'
 components:
   schemas:
-    HandlerMetadataType:
-      type: string
-      enum:
-      - Exclusive
-      - Shared
-      - Workflow
     ModifyServiceRequest:
       type: object
       properties:
@@ -361,15 +355,32 @@ components:
           type:
           - string
           - 'null'
-    ListServicesResponse:
+    ModifyServiceStateRequest:
       type: object
       required:
-      - services
+      - new_state
+      - object_key
       properties:
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceMetadata'
+        version:
+          title: Version
+          description: If set, the latest version of the state is compared with this value and the operation will fail when the versions differ.
+          type:
+          - string
+          - 'null'
+        object_key:
+          title: Service key
+          description: To what virtual object key to apply this change
+          type: string
+        new_state:
+          title: New State
+          description: The new state to replace the previous state with
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: integer
+              format: uint8
+              minimum: 0.0
     HandlerMetadata:
       type: object
       required:
@@ -470,11 +481,11 @@ components:
         output_json_schema:
           title: Output JSON Schema
           description: JSON Schema of the handler output
-    ServiceType:
+    HandlerMetadataType:
       type: string
       enum:
-      - Service
-      - VirtualObject
+      - Exclusive
+      - Shared
       - Workflow
     ServiceMetadata:
       type: object
@@ -594,31 +605,20 @@ components:
           type:
           - string
           - 'null'
-    ModifyServiceStateRequest:
+    ListServicesResponse:
       type: object
       required:
-      - new_state
-      - object_key
+      - services
       properties:
-        version:
-          title: Version
-          description: If set, the latest version of the state is compared with this value and the operation will fail when the versions differ.
-          type:
-          - string
-          - 'null'
-        object_key:
-          title: Service key
-          description: To what virtual object key to apply this change
-          type: string
-        new_state:
-          title: New State
-          description: The new state to replace the previous state with
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: integer
-              format: uint8
-              minimum: 0.0
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceMetadata'
+    ServiceType:
+      type: string
+      enum:
+      - Service
+      - VirtualObject
+      - Workflow
 externalDocs:
   url: https://docs.restate.dev/operate/

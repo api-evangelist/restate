@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Admin Openapi API
+  title: Admin OpenAPI API
   description: This API exposes the admin operations of a Restate cluster, such as registering new service deployments, interacting with running invocations, register Kafka subscriptions, retrieve service metadata. For an overview, check out the Operate documentation. If you're looking for how to call your services, check out the Ingress HTTP API instead.
   version: 1.4.0
 tags:

@@ -7,6 +7,10 @@ description: >-
 type: Index
 deliveryModel:
   model: unknown
+  license_evidence:
+    repo: restatedev/restate
+    spdx: NOASSERTION
+    stars: 4471
   open_source: unknown
   commercial: false
   callable_host: false
@@ -15,7 +19,7 @@ deliveryModel:
   source:
   - openapi
   - repository-unlicensed
-  generated: '2026-08-28'
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -42,7 +46,7 @@ modified: '2026-05-19'
 specificationVersion: '0.23'
 apis:
 - aid: restate:restate-cluster-health-api
-  name: Restate cluster_health API
+  name: Restate Cluster Health API
   description: Cluster health
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
@@ -75,7 +79,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 - aid: restate:restate-deployment-api
-  name: Restate deployment API
+  name: Restate Deployment API
   description: Service Deployment management
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
@@ -109,7 +113,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 - aid: restate:restate-health-api
-  name: Restate health API
+  name: Restate Health API
   description: Admin API health
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
@@ -143,7 +147,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 - aid: restate:restate-invocation-api
-  name: Restate invocation API
+  name: Restate Invocation API
   description: Invocation management
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
@@ -177,7 +181,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 - aid: restate:restate-service-api
-  name: Restate service API
+  name: Restate Service API
   description: Service management
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
@@ -211,7 +215,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 - aid: restate:restate-service-handler-api
-  name: Restate service_handler API
+  name: Restate Service Handler API
   description: Service handlers metadata
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
@@ -244,7 +248,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 - aid: restate:restate-subscription-api
-  name: Restate subscription API
+  name: Restate Subscription API
   description: Subscription management
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
@@ -278,7 +282,7 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 - aid: restate:restate-version-api
-  name: Restate version API
+  name: Restate Version API
   description: API Version
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
@@ -317,8 +321,6 @@ apis:
   humanURL: https://restate.dev/
   baseURL: http://localhost:9070
   tags:
-  - OpenAPI
-  tags_raw:
   - Open API
   properties:
   - type: OpenAPI
