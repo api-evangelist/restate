@@ -204,8 +204,6 @@ paths:
                 $ref: '#/components/schemas/ErrorDescriptionResponse'
 components:
   schemas:
-    String:
-      type: string
     ListSubscriptionsResponse:
       type: object
       required:
@@ -215,6 +213,41 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SubscriptionResponse'
+    ErrorDescriptionResponse:
+      title: Error description response
+      description: Error details of the response
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+        restate_code:
+          title: Restate code
+          description: Restate error code describing this error
+          type:
+          - string
+          - 'null'
+    SubscriptionResponse:
+      type: object
+      required:
+      - id
+      - options
+      - sink
+      - source
+      properties:
+        id:
+          $ref: '#/components/schemas/String'
+        source:
+          type: string
+        sink:
+          type: string
+        options:
+          type: object
+          additionalProperties:
+            type: string
+    String:
+      type: string
     CreateSubscriptionRequest:
       type: object
       required:
@@ -243,38 +276,5 @@ components:
           - 'null'
           additionalProperties:
             type: string
-    SubscriptionResponse:
-      type: object
-      required:
-      - id
-      - options
-      - sink
-      - source
-      properties:
-        id:
-          $ref: '#/components/schemas/String'
-        source:
-          type: string
-        sink:
-          type: string
-        options:
-          type: object
-          additionalProperties:
-            type: string
-    ErrorDescriptionResponse:
-      title: Error description response
-      description: Error details of the response
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-        restate_code:
-          title: Restate code
-          description: Restate error code describing this error
-          type:
-          - string
-          - 'null'
 externalDocs:
   url: https://docs.restate.dev/operate/

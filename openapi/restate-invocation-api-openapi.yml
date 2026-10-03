@@ -239,6 +239,12 @@ paths:
                 $ref: '#/components/schemas/ErrorDescriptionResponse'
 components:
   schemas:
+    DeletionMode:
+      type: string
+      enum:
+      - Cancel
+      - Kill
+      - Purge
     ErrorDescriptionResponse:
       title: Error description response
       description: Error details of the response
@@ -254,11 +260,5 @@ components:
           type:
           - string
           - 'null'
-    DeletionMode:
-      type: string
-      enum:
-      - Cancel
-      - Kill
-      - Purge
 externalDocs:
   url: https://docs.restate.dev/operate/
