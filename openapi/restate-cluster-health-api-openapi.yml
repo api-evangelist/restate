@@ -59,6 +59,18 @@ paths:
                 $ref: '#/components/schemas/ErrorDescriptionResponse'
 components:
   schemas:
+    EmbeddedMetadataClusterHealth:
+      type: object
+      required:
+      - members
+      properties:
+        members:
+          description: Current members of the embedded metadata cluster
+          type: array
+          items:
+            type: integer
+            format: uint32
+            minimum: 0.0
     ErrorDescriptionResponse:
       title: Error description response
       description: Error details of the response
@@ -74,18 +86,6 @@ components:
           type:
           - string
           - 'null'
-    EmbeddedMetadataClusterHealth:
-      type: object
-      required:
-      - members
-      properties:
-        members:
-          description: Current members of the embedded metadata cluster
-          type: array
-          items:
-            type: integer
-            format: uint32
-            minimum: 0.0
     ClusterHealthResponse:
       type: object
       required:

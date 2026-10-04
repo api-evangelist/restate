@@ -204,15 +204,8 @@ paths:
                 $ref: '#/components/schemas/ErrorDescriptionResponse'
 components:
   schemas:
-    ListSubscriptionsResponse:
-      type: object
-      required:
-      - subscriptions
-      properties:
-        subscriptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/SubscriptionResponse'
+    String:
+      type: string
     ErrorDescriptionResponse:
       title: Error description response
       description: Error details of the response
@@ -246,8 +239,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    String:
-      type: string
     CreateSubscriptionRequest:
       type: object
       required:
@@ -276,5 +267,14 @@ components:
           - 'null'
           additionalProperties:
             type: string
+    ListSubscriptionsResponse:
+      type: object
+      required:
+      - subscriptions
+      properties:
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubscriptionResponse'
 externalDocs:
   url: https://docs.restate.dev/operate/

@@ -229,12 +229,15 @@ components:
         output_json_schema:
           title: Output JSON Schema
           description: JSON Schema of the handler output
-    HandlerMetadataType:
-      type: string
-      enum:
-      - Exclusive
-      - Shared
-      - Workflow
+    ListServiceHandlersResponse:
+      type: object
+      required:
+      - handlers
+      properties:
+        handlers:
+          type: array
+          items:
+            $ref: '#/components/schemas/HandlerMetadata'
     ErrorDescriptionResponse:
       title: Error description response
       description: Error details of the response
@@ -250,14 +253,11 @@ components:
           type:
           - string
           - 'null'
-    ListServiceHandlersResponse:
-      type: object
-      required:
-      - handlers
-      properties:
-        handlers:
-          type: array
-          items:
-            $ref: '#/components/schemas/HandlerMetadata'
+    HandlerMetadataType:
+      type: string
+      enum:
+      - Exclusive
+      - Shared
+      - Workflow
 externalDocs:
   url: https://docs.restate.dev/operate/
