@@ -348,6 +348,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml
 common:
+  - type: Plans
+    url: plans/restate-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/restate-rate-limits.yml
+  - type: FinOps
+    url: finops/restate-finops.yml
   - type: IssueTracker
     url: https://github.com/restatedev/restate/issues
   - type: Releases
