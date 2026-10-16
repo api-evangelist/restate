@@ -2,6 +2,13 @@
   "repo": "restate",
   "feeds": [
     {
+      "source": "https://restate.dev/blog/",
+      "feed_url": "https://restate.dev/blog/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://discord.gg/skW3AZ6uGd",
       "feed_url": "https://discord.gg/skW3AZ6uGd",
       "title": "",
@@ -9,7 +16,7 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 2,
   "agent_pulled": "2026-07-04",
   "feed_nature": "vendor-blog",
