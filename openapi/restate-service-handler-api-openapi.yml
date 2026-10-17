@@ -129,6 +129,36 @@ paths:
                 $ref: '#/components/schemas/ErrorDescriptionResponse'
 components:
   schemas:
+    ListServiceHandlersResponse:
+      type: object
+      required:
+      - handlers
+      properties:
+        handlers:
+          type: array
+          items:
+            $ref: '#/components/schemas/HandlerMetadata'
+    ErrorDescriptionResponse:
+      title: Error description response
+      description: Error details of the response
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+        restate_code:
+          title: Restate code
+          description: Restate error code describing this error
+          type:
+          - string
+          - 'null'
+    HandlerMetadataType:
+      type: string
+      enum:
+      - Exclusive
+      - Shared
+      - Workflow
     HandlerMetadata:
       type: object
       required:
@@ -229,35 +259,5 @@ components:
         output_json_schema:
           title: Output JSON Schema
           description: JSON Schema of the handler output
-    ListServiceHandlersResponse:
-      type: object
-      required:
-      - handlers
-      properties:
-        handlers:
-          type: array
-          items:
-            $ref: '#/components/schemas/HandlerMetadata'
-    ErrorDescriptionResponse:
-      title: Error description response
-      description: Error details of the response
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-        restate_code:
-          title: Restate code
-          description: Restate error code describing this error
-          type:
-          - string
-          - 'null'
-    HandlerMetadataType:
-      type: string
-      enum:
-      - Exclusive
-      - Shared
-      - Workflow
 externalDocs:
   url: https://docs.restate.dev/operate/
