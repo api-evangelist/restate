@@ -1,4 +1,4 @@
-# Restate (restate)
+# Restate
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,73 +66,173 @@
 
 Restate is a low-latency durable execution engine for building resilient applications that tolerate all infrastructure faults. It provides durable execution for workflows, event-driven handlers, and stateful orchestration of microservices with exactly-once semantics, automatic retries, and built-in state management.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/apis.yml)
+**Areas:** Durable Execution · Workflows · Microservices · Orchestration · Distributed Systems
 
-## Scope
+## Restate on APIs.io
 
-- **Type:** Index
+Everything profiled for Restate is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/restate/](https://apis.io/providers/restate/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (9)
 
-- Durable Execution
-- Workflows
-- Microservices
-- Orchestration
-- Distributed Systems
+- [Restate Cluster Health API](https://apis.io/apis/restate/restate-cluster-health-api/) — Cluster health
+- [Restate Deployment API](https://apis.io/apis/restate/restate-deployment-api/) — Service Deployment management
+- [Restate Health API](https://apis.io/apis/restate/restate-health-api/) — Admin API health
+- [Restate Invocation API](https://apis.io/apis/restate/restate-invocation-api/) — Invocation management
+- [Restate Service API](https://apis.io/apis/restate/restate-service-api/) — Service management
+- [Restate Service Handler API](https://apis.io/apis/restate/restate-service-handler-api/) — Service handlers metadata
+- [Restate Subscription API](https://apis.io/apis/restate/restate-subscription-api/) — Subscription management
+- [Restate Version API](https://apis.io/apis/restate/restate-version-api/) — API Version
+- [Restate Open API](https://apis.io/apis/restate/restate-open-api-api/) — The Open API API from Restate — 1 operation(s) for open api.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-26
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Restate Admin API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Restate Admin API provides endpoints for managing service deployments, inspecting service metadata, managing in-flight invocations, and monitoring the health of the Restate server. It enables operators to register service deployments, purge completed invocations, and configure services programmatically.
+- [Restate Agentic Access](https://apis.io/agentic-access/restate/restate-agentic-access/)
 
-- **Human URL:** [https://restate.dev/](https://restate.dev/)
-- **Base URL:** `http://localhost:9070`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Deployments
-- Services
-- Invocations
-- Administration
+- [Deployment](https://apis.io/schemas/restate/restate-deployment/)
+- [Invocation](https://apis.io/schemas/restate/restate-invocation/)
 
-#### Properties
+#### JSON Structure (2)
 
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/openapi/restate-admin-api.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-deployment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/json-schema/restate-invocation-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/vocabulary/restate-vocabulary.yml)
-- [Documentation](https://docs.restate.dev/)
-- [GitHub Repository](https://github.com/restatedev/restate)
-- [Kubernetes C R D](https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restateclusters.yaml)
-- [Kubernetes C R D](https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatedeployments.yaml)
-- [Kubernetes C R D](https://raw.githubusercontent.com/api-evangelist/restate/refs/heads/main/crd/restatecloudenvironments.yaml)
-- [Postman Collection](collections/restate-admin-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/restate-admin-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Restate Deployment Structure](https://apis.io/json-structure/restate/restate-deployment-structure/)
+- [Restate Invocation Structure](https://apis.io/json-structure/restate/restate-invocation-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/restatedev)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Restate Context](https://apis.io/jsonld/restate/restate-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Restate Vocabulary](https://apis.io/vocabularies/restate/restate-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Restate Create Deployment Example](https://apis.io/examples/restate/restate-create-deployment-example/)
+- [Restate List Deployments Example](https://apis.io/examples/restate/restate-list-deployments-example/)
+- [Restate List Invocations Example](https://apis.io/examples/restate/restate-list-invocations-example/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Admin API](https://apis.io/collections/restate/open-restate-admin-api/)
+- [Admin cluster_health API](https://apis.io/collections/restate/open-restate-cluster-health-api/)
+- [Admin cluster_health deployment API](https://apis.io/collections/restate/open-restate-deployment-api/)
+- [Admin cluster_health health API](https://apis.io/collections/restate/open-restate-health-api/)
+- [Admin cluster_health invocation API](https://apis.io/collections/restate/open-restate-invocation-api/)
+- [Admin cluster_health openapi API](https://apis.io/collections/restate/open-restate-openapi-api/)
+- [Admin cluster_health service API](https://apis.io/collections/restate/open-restate-service-api/)
+- [Admin cluster_health service_handler API](https://apis.io/collections/restate/open-restate-service-handler-api/)
+- [Admin cluster_health subscription API](https://apis.io/collections/restate/open-restate-subscription-api/)
+- [Admin cluster_health version API](https://apis.io/collections/restate/open-restate-version-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Restate — jsonschema rules](https://apis.io/rules/restate/restate-jsonschema-spectral-rules/)
+- [Restate API Rules](https://apis.io/rules/restate/restate-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Restate Domain Security](https://apis.io/security/restate/restate-domain-security/)
+- [Restate Trust Center](https://apis.io/security/restate/restate-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Restate Plans Pricing](https://apis.io/plans/restate/restate-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Restate Rate Limits](https://apis.io/rate-limits/restate/restate-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Restate Finops](https://apis.io/finops/restate/restate-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://restate.dev/)
 - [Documentation](https://docs.restate.dev/)
-- [GitHub Organization](https://github.com/restatedev)
-- [Type Script  S D K](https://github.com/restatedev/sdk-typescript)
-- [Python  S D K](https://github.com/restatedev/sdk-python)
-- [Java  S D K](https://github.com/restatedev/sdk-java)
-- [Go  S D K](https://github.com/restatedev/sdk-go)
-- [Rust  S D K](https://github.com/restatedev/sdk-rust)
-- [Examples](https://github.com/restatedev/examples)
-- [Web  U I](https://github.com/restatedev/restate-web-ui)
-- [Discord](https://discord.gg/skW3AZ6uGd)
 - [Blog](https://restate.dev/blog/)
-- [L L Ms Txt](https://docs.restate.dev/llms.txt)
+- [GitHub](https://github.com/restatedev)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 36.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 56.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 15.8 |
+
+**Agent readiness 30.6** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | verified |
+| Error Semantics | verified |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/restate/](https://apis.io/providers/restate/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Restate: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/restate/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
